@@ -11,7 +11,7 @@ $pdo = PdoMudry::getPdoMudry();
 switch($uc) 
 {
     case 'accueil': {
-        include("Controllers/c_voirAvions.php");
+        include("Views/v_accueil.php");
         break;
     }
     case 'creerAvion': {
@@ -22,7 +22,10 @@ switch($uc)
         include("Controllers/c_modifierAvion.php");
         break;
     }
-
+    case 'supprimerAvion': {
+        include("Controllers/c_suppressionAvion.php");
+        break;
+    }
     case 'creerAeroport': {
         include("Controllers/c_creationAeroport.php");
         break;
@@ -34,5 +37,13 @@ switch($uc)
     case 'supprimerAeroport': {
         include("Controllers/c_suppressionAeroport.php");
         break;
+    }
+	case 'voirEmployer' : {
+        include("Controllers/c_voirEmployer.php");
+        break;
+    }
+	case 'gererEmployer' : { 
+        include("Controllers/c_gestionEmployer.php");
+        break; 
     }
 }

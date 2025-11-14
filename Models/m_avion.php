@@ -34,16 +34,16 @@ class PdoMudry {
     }
 
     public function creerAvion($numSerie_Avion, $codeInterne_Avion, $id_Modele) {
-        $res = PdoMudry::$monPdo->prepare('INSERT INTO avion (numSerie, codeInterne, id_Modele) VALUES (:numSerie, :codeInterne, :id_Modele)');
+        $res = PdoMudry::$monPdo->prepare('INSERT INTO avion (numSerie_Avion, codeInterne_Avion, id_Modele) VALUES (:numSerie, :codeInterne, :id_Modele)');
         $res->bindParam(':numSerie', $numSerie_Avion, PDO::PARAM_STR);
         $res->bindParam(':codeInterne', $codeInterne_Avion, PDO::PARAM_STR);
         $res->bindParam(':id_Modele', $id_Modele, PDO::PARAM_INT);
         $res->execute();
     }
 
-    public function modifierAvion($num, $nom, ) {
+    public function modifierAvion($num, $code) {
         $res = PdoMudry::$monPdo->prepare('UPDATE avion SET codeInterne_Avion = :codeInterne_Avion WHERE numSerie_Avion = :numSerie_Avion');
-        $res->bindParam(':numSerie_Avion', $num, PDO::PARAM_INT);
+        $res->bindParam(':numSerie_Avion', $num, PDO::PARAM_STR);
         $res->bindParam(':codeInterne_Avion', $code, PDO::PARAM_STR);
         $res->execute();
     }

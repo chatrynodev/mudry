@@ -16,6 +16,23 @@
         <tbody>
             <tr><td>Numéro de Série</td><td><input name="numSerie" size=20></td></tr>
             <tr><td>Code Interne</td><td><input name="codeInterne" size=20></td></tr>
+            <tr>
+                <td>Sélectionner un modèle</td>
+                <td>
+                    <?php if (!isset($lesModeles)) $lesModeles = []; ?>
+                    <select name="id_Modele">
+                        <option value="">-- Aucun --</option>
+                        <?php foreach ($lesModeles as $modele) {
+                            $id = $modele['id_Modele'] ?? '';
+                            $lib = $modele['libelle_Modele'] ?? $id;
+                            $nb = $nbsieges[]
+                            if ($id !== '') {
+                                echo '<option value="'.htmlspecialchars($id).'">'.htmlspecialchars($lib).'</option>';
+                            }
+                        } ?>
+                    </select>
+                </td>
+            </tr>
         </tbody>
         </table>
                 <br />

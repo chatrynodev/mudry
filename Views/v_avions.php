@@ -8,7 +8,7 @@
 
 </head>
 <body>
-    <form action="index.php?uc=creerAvion&action=creationAvion" method="post">
+    <form action="index.php?uc=creerAvion&action=creerAvion" method="post">
         <p><H1>Liste des Avions</H1></p>
 
         <table border=3 cellspacing=1>
@@ -18,9 +18,11 @@
             </tr>
             <?php
 
-                foreach ($lesAvions as $unAvion) {
+                foreach ($lesAvions as $unAvion) 
+                {
                     $num = $unAvion['numSerie_Avion'];
                     $code = $unAvion['codeInterne_Avion'];
+                    $modele = $unAvion['id_Modele'];
             ?>
                 <tr>
                         <td width=150><?php echo $num ?></td>

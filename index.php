@@ -1,5 +1,5 @@
 <?php
-require_once("Models/class.pdoMudry.inc.php");
+require_once("Models/m_avion.php");
 
 if(!isset($_REQUEST['uc'])) 
     $uc = 'accueil';
@@ -21,5 +21,29 @@ switch($uc)
     case 'modifierAvion': {
         include("Controllers/c_modifierAvion.php");
         break;
+    }
+    case 'supprimerAvion': {
+        include("Controllers/c_suppressionAvion.php");
+        break;
+    }
+    case 'creerAeroport': {
+        include("Controllers/c_creationAeroport.php");
+        break;
+    }
+    case 'modifierAeroport': {
+        include("Controllers/c_modifierAeroport.php");
+        break;
+    }
+    case 'supprimerAeroport': {
+        include("Controllers/c_suppressionAeroport.php");
+        break;
+    }
+    case 'voirEmployer' : {
+        include("Controllers/c_voirEmployer.php");
+        break;
+    }
+    case 'gererEmployer' : { 
+        include("Controllers/c_gestionEmployer.php");
+        break; 
     }
 }

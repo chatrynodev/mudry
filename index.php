@@ -1,27 +1,48 @@
 <?php
-// création d'une session
-session_start();
-/* inclusion en une seule fois du fichier des fonctions et du modèle
-require_once("models/fonctions.inc.php");*/
-require_once("Models/class.pdoMudry.inc.php");
-// inclusion des vues
-include("Views/v_header.php") ;
-//include("Views/v_bandeau.php") ;
+require_once(__DIR__ . "/Models/class.pdoMudry.inc.php");
 
-if(!isset($_REQUEST['uc']))
-     $uc = 'accueil';
-else
-	$uc = $_REQUEST['uc'];
+if(!isset($_REQUEST['uc'])) 
+    $uc = 'accueil';
+else 
+    $uc = $_REQUEST['uc'];
 
-$pdo = PdoJardiPlants::getPdoMudry();	 
-switch($uc)
+$pdo = PdoMudry::getPdoMudry();
+switch($uc) 
 {
-	case 'accueil':
-		{include("Views/v_accueil.php");break;}
-	case 'voirEmployer' :
-		{include("Controllers/c_voirEmployer.php");break;}
-	case 'gererEmployer' :
-		{ include("Controllers/c_gestionEmployer.php");break; }
+    case 'accueil': {
+        include("Views/v_accueil.php");
+        break;
+    }
+    case 'creerAvion': {
+        include("Controllers/c_creationAvion.php");
+        break;
+    }
+    case 'modifierAvion': {
+        include("Controllers/c_modifierAvion.php");
+        break;
+    }
+    case 'supprimerAvion': {
+        include("Controllers/c_suppressionAvion.php");
+        break;
+    }
+    case 'creerAeroport': {
+        include("Controllers/c_creationAeroport.php");
+        break;
+    }
+    case 'modifierAeroport': {
+        include("Controllers/c_modifierAeroport.php");
+        break;
+    }
+    case 'supprimerAeroport': {
+        include("Controllers/c_suppressionAeroport.php");
+        break;
+    }
+    case 'voirEmployer' : {
+        include("Controllers/c_voirEmployer.php");
+        break;
+    }
+    case 'gererEmployer' : { 
+        include("Controllers/c_gestionEmployer.php");
+        break; 
+    }
 }
-include("Views/v_footer.php") ;
-?>

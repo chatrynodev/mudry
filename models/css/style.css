@@ -5,38 +5,33 @@
     font-family: Arial, sans-serif;
 }
 
-/* HEADER */
+/* =============== HEADER =============== */
 header {
-    text-align: center;
-    background-color: #004AAD;
-    color: white;
-    padding-bottom: 20px;
+    position: relative;
+    width: 100%;
 }
 
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-}
-
-.logo {
-    width: 60px;
-}
-
-nav a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-}
-
+/* Image du header */
 .header-img {
     width: 100%;
-    height: auto;
-    margin-top: 10px;
+    display: block;
 }
 
-/* PRESENTATION */
+/* Titre MUDRY posé sur l’image */
+header h1 {
+    position: absolute;
+    top: 120px;            /* ajuste la hauteur ici */
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 55px;
+    font-weight: 700;
+    font-family: 'Chewy', sans-serif;
+    z-index: 10;
+}
+
+/* =============== PRESENTATION =============== */
+
 .presentation {
     text-align: center;
     padding: 40px 20px;
@@ -70,7 +65,8 @@ nav a {
     cursor: pointer;
 }
 
-/* SERVICES */
+/* =============== SERVICES =============== */
+
 .services {
     background: #CFD8E5;
     padding: 40px 20px;
@@ -97,7 +93,8 @@ nav a {
     margin-top: 20px;
 }
 
-/* FOOTER */
+/* =============== FOOTER =============== */
+
 footer {
     background: #2E2E2E;
     color: white;

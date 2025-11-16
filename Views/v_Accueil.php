@@ -11,17 +11,8 @@
 
     <!-- HEADER -->
     <header>
-        <div class="nav-container">
-            <img src="logo.png" class="logo" alt="">
-            <nav>
-                <a href="#">Nos avions</a>
-                <a href="#">Nos vols</a>
-                <a href="#">Nos aéroports</a>
-                <a href="#">Notre compagnie</a>
-                <a href="#">Connexion</a>
-            </nav>
-        </div>
-
+        <?php include("includes/navbar.php"); ?>
+        
         <h1>MUDRY</h1>
         <img src="/mudry/Models/images/avion fond accueil.png" class="header-img" alt="">
     </header>

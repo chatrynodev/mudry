@@ -1,6 +1,7 @@
 <?php
 // contrôleur : c_creerAeroport.php
-require_once '../Models/m_aeroport.php';
+require_once dirname(__DIR__) . '/Models/m_aeroport.php';
+
 
 if (!isset($_REQUEST['action'])) {
     $action = 'saisirAeroport';
@@ -17,7 +18,8 @@ switch ($action) {
         $longitude = '';
         $codeCommecial_Aeroport = '';
 
-        include '../Views/v_addAeroport.php';
+        include dirname(__DIR__) . '/Views/v_addAeroport.php';
+
         break;
 
     case 'confirmCreationAeroport':
@@ -54,11 +56,12 @@ switch ($action) {
 
         if (!empty($erreurs)) {
             // On affiche la vue des erreurs (si tu en as une)
-            if (file_exists('../Views/erreurs/v_erreurs.php')) {
-                include('../Views/erreurs/v_erreurs.php');
+            if (file_exists(dirname(__DIR__) . '/Views/erreurs/v_erreurs.php')) {
+                include(dirname(__DIR__) . '/Views/erreurs/v_erreurs.php');
             }
             // Puis on réaffiche le formulaire avec les valeurs saisies
-            include('../Views/v_addAeroport.php');
+            include dirname(__DIR__) . '/Views/v_addAeroport.php';
+
         } else {
             // Conversion en float après validation
             $latitudeFloat = (float)$latitudeNorm;
@@ -76,21 +79,22 @@ switch ($action) {
 
             if (!$ok || (is_array($ok) && isset($ok['error']))) {
                 $erreurs[] = "Une erreur est survenue lors de la création de l'aéroport.";
-                if (file_exists('../Views/erreurs/v_erreurs.php')) {
-                    include('../Views/erreurs/v_erreurs.php');
+                if (file_exists(dirname(__DIR__) . '/Views/erreurs/v_erreurs.php')) {
+                    include(dirname(__DIR__) . '/Views/erreurs/v_erreurs.php');
                 }
-                include('../Views/v_addAeroport.php');
+                include dirname(__DIR__) . '/Views/v_addAeroport.php';
+
             } else {
                 $message = "L'aéroport a été créé avec succès.";
-                if (file_exists('../Views/v_message.php')) {
-                    include('../Views/v_message.php');
+                if (file_exists(dirname(__DIR__) . '/Views/v_message.php')) {
+                    include(dirname(__DIR__) . '/Views/v_message.php');
                 }
 
                 // tu peux au choix :
                 // - réafficher le formulaire vide
                 // - ou rediriger vers la liste des aéroports
                 $nom = $latitude = $longitude = $codeCommecial_Aeroport = '';
-                include('../Views/v_addAeroport.php');
+                include dirname(__DIR__) . '/Views/v_addAeroport.php';
             }
         }
 

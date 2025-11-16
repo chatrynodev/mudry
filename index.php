@@ -12,7 +12,7 @@ $pdo = PdoMudry::getPdoMudry();
 switch($uc) 
 {
     case 'accueil': {
-        include("Views/v_accueil.php");
+        include("Views/v_Accueil.php");
         break;
     }
     case 'creerAvion': {
@@ -25,6 +25,10 @@ switch($uc)
     }
     case 'supprimerAvion': {
         include("Controllers/c_suppressionAvion.php");
+        break;
+    }
+    case 'cAeroport': {
+        include("Views/v_creerAeroport.php");
         break;
     }
     case 'creerAeroport': {

@@ -5,11 +5,12 @@ class AeroportModel {
     private $pdo;
 
     public function __construct() {
+        // On récupère l’objet PDO depuis le singleton
         $this->pdo = PdoMudry::getPdoMudry()->getConnexion();
     }
 
     /* ------------------------------
-       Nettoyage sécurisée d’une chaîne
+       Nettoyage sécurisé d’une chaîne
        ------------------------------ */
     private function cleanString($value) {
         return htmlspecialchars(trim($value), ENT_QUOTES, 'UTF-8');
@@ -24,8 +25,11 @@ class AeroportModel {
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
 
+            // ❗ IMPORTANT : retourner le résultat
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
         } catch (Exception $e) {
-            return ["error" => "Erreur interne."];
+            return ["error" => "Erreur interne lors de la récupération des aéroports."];
         }
     }
 
@@ -39,10 +43,11 @@ class AeroportModel {
             $sql = "SELECT * FROM aeroport WHERE id_Aeroport = ?";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([$id]);
+
             return $stmt->fetch(PDO::FETCH_ASSOC);
 
         } catch (Exception $e) {
-            return ["error" => "Erreur interne."];
+            return ["error" => "Erreur interne lors de la récupération d’un aéroport."];
         }
     }
 
@@ -61,10 +66,11 @@ class AeroportModel {
                     VALUES (?, ?, ?, ?)";
 
             $stmt = $this->pdo->prepare($sql);
+
             return $stmt->execute([$nom, $latitude, $longitude, $codeCommercial]);
 
         } catch (Exception $e) {
-            return ["error" => "Erreur interne."];
+            return ["error" => "Erreur interne lors de l’insertion."];
         }
     }
 
@@ -87,10 +93,11 @@ class AeroportModel {
                     WHERE id_Aeroport = ?";
 
             $stmt = $this->pdo->prepare($sql);
+
             return $stmt->execute([$nom, $latitude, $longitude, $codeCommercial, $id]);
 
         } catch (Exception $e) {
-            return ["error" => "Erreur interne."];
+            return ["error" => "Erreur interne lors de la modification."];
         }
     }
 
@@ -103,10 +110,11 @@ class AeroportModel {
 
             $sql = "DELETE FROM aeroport WHERE id_Aeroport = ?";
             $stmt = $this->pdo->prepare($sql);
+
             return $stmt->execute([$id]);
 
         } catch (Exception $e) {
-            return ["error" => "Erreur interne."];
+            return ["error" => "Erreur interne lors de la suppression."];
         }
     }
 }

@@ -36,11 +36,15 @@ switch($uc)
         break;
     }
     case 'modifierAeroport': {
-        include("Controllers/c_modifierAeroport.php");
+        include("Controllers/c_updateAeroport.php");
         break;
     }
     case 'supprimerAeroport': {
-        include("Controllers/c_suppressionAeroport.php");
+        include("Controllers/c_deleteAeroport.php");
+        break;
+    }
+    case 'voirAeroport': {
+        include "Controllers/c_voirAeroport.php";
         break;
     }
 	case 'voirEmployer' : {

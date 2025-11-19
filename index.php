@@ -47,6 +47,10 @@ switch($uc)
         include "Controllers/c_voirAeroport.php";
         break;
     }
+    case 'voirMouvement' : {
+        include("Controllers/c_voirMouvement.php");
+        break;
+    }
 	case 'voirEmployer' : {
         include("Controllers/c_voirEmployer.php");
         break;

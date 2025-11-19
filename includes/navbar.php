@@ -44,7 +44,7 @@ nav {
     <img src="images/logo.png" alt="Logo de la compagnie aérienne" class="logoNav">
     <ul class="listeNav">
         <li><a href="index.php?uc=voirAvion&action=liste">Nos<br>Avions</a></li>
-        <li><a href="index.php?uc=voirVol&action=liste">Nos<br>Vols</a></li>
+        <li><a href="index.php?uc=voirMouvement&action=liste">Nos<br>Vols</a></li>
         <li><a href="index.php?uc=voirAeroport&action=liste">Nos<br>Aéroports</a></li>
         <li><a href="index.php?uc=voirEmployer&action=liste">Notre<br>Equipage</a></li>
         <li><a href="index.php?uc=connexion&action=login">Connexion</a></li>

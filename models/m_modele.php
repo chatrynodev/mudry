@@ -4,10 +4,11 @@ class ModeleModel {
 
     private $pdo;
 
-    public function __construct(PDO $pdo) {
-        $this->pdo = $pdo;
+    public function __construct()
+    {
+        // ✔ On récupère l’instance — puis la connexion PDO
+        $this->pdo = PdoMudry::getPdoMudry()->getConnexion();
     }
-
     private function cleanString($v) {
         return htmlspecialchars(trim($v), ENT_QUOTES, 'UTF-8');
     }

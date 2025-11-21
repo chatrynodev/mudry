@@ -7,7 +7,7 @@
 
 <div class="mouvement-container">
 
-<form method="POST" action="index.php?uc=addMouvement&action=confirmAdd">
+<form method="POST" action="index.php?uc=gererEquipage&action=confirmAdd">
 
     <label>Numéro de vol :</label>
     <input type="text" name="num_Vol" required><br>

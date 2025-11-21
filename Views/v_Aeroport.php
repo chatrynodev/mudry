@@ -50,7 +50,7 @@
                                 </a>
 
                                 <a class="btn btn-delete"
-                                   href="index.php?uc=supprimerAeroport&id=<?= $aeroport['id_Aeroport'] ?>">
+                                   href="index.php?uc=deleteAeroport&id=<?= $aeroport['id_Aeroport'] ?>">
                                     Delete
                                 </a>
                             </td>

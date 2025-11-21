@@ -38,7 +38,7 @@ switch($uc)
         include("Controllers/c_updateAeroport.php");
         break;
     }
-    case 'supprimerAeroport': {
+    case 'deleteAeroport': {
         include("Controllers/c_deleteAeroport.php");
         break;
     }
@@ -68,6 +68,10 @@ switch($uc)
     }
 	case 'gererEmployer' : { 
         include("Controllers/c_gestionEmployer.php");
+        break; 
+    }
+    	case 'gererEquipage' : { 
+        include("Controllers/c_gestionEquipage.php");
         break; 
     }
 }

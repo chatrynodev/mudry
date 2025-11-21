@@ -1,6 +1,13 @@
+<script src="/mudry/Models/js/script_aeroportMouv.js"></script>
+<header>
+   <?php include("includes/navbar.php"); ?>      
+</header>
+
 <h2>Créer un mouvement</h2>
 
-<form method="POST" action="index.php?uc=mouvement&action=confirmAdd">
+<div class="mouvement-container">
+
+<form method="POST" action="index.php?uc=addMouvement&action=confirmAdd">
 
     <label>Numéro de vol :</label>
     <input type="text" name="num_Vol" required><br>
@@ -20,14 +27,41 @@
     <label>Durée :</label>
     <input type="text" name="duree"><br>
 
-    <label>ID Avion :</label>
-    <input type="number" name="id_Avion" required><br>
+    <!-- MENU DÉROULANT DES AVIONS -->
+    <label>Avion (modèle & numéro de série) :</label>
+    <select name="id_Avion" required>
+        <option value="">-- Sélectionner un avion --</option>
+        <?php foreach ($lesAvions as $avion): ?>
+            <option value="<?= $avion['id_Avion'] ?>">
+                <?= $avion['id_Avion'] ?> — <?= htmlspecialchars($avion['codeInterne_Avion']) ?>
+            </option>
+        <?php endforeach; ?>
+    </select><br>
 
+    <!-- MENU DÉROULANT AÉROPORT ARRIVÉE -->
     <label>Aéroport Arrivée :</label>
-    <input type="number" name="id_Aeroport_Arrivee" required><br>
+    <select name="id_Aeroport_Arrivee" required>
+        <option value="">-- Sélectionner un aéroport --</option>
+        <?php foreach ($lesAeroports as $aero): ?>
+            <option value="<?= $aero['id_Aeroport'] ?>">
+                <?= htmlspecialchars($aero['nom_Aeroport']) ?> (<?= $aero['codeCommercial_Aeroport'] ?>)
+            </option>
+        <?php endforeach; ?>
+    </select><br>
 
+    <!-- MENU DÉROULANT AÉROPORT DÉPART -->
     <label>Aéroport Départ :</label>
-    <input type="number" name="id_Aeroport_Depart" required><br>
+    <select name="id_Aeroport_Depart" required>
+        <option value="">-- Sélectionner un aéroport --</option>
+        <?php foreach ($lesAeroports as $aero): ?>
+            <option value="<?= $aero['id_Aeroport'] ?>">
+                <?= htmlspecialchars($aero['nom_Aeroport']) ?> (<?= $aero['codeCommercial_Aeroport'] ?>)
+            </option>
+        <?php endforeach; ?>
+    </select><br>
+    <button type="submit" class="btn btn-add" onclick="validateAeroports()">Ajouter</button>
 
-    <button type="submit">Ajouter</button>
 </form>
+
+</div>
+<script src="/mudry/Models/js/script_aeroportMouv.js"></script>

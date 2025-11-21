@@ -1,9 +1,12 @@
+<header>
+   <?php include("includes/navbar.php"); ?>      
+</header>
 <h2>Supprimer ce mouvement ?</h2>
 
 <p>Vol : <?= $unMouv['num_Vol'] ?></p>
 <p>Distance : <?= $unMouv['distance_Mouv'] ?> km</p>
 
-<form method="POST" action="index.php?uc=mouvement&action=confirmDelete">
+<form method="POST" action="index.php?uc=deleteMouvement&action=confirmDelete">
     <input type="hidden" name="num_Mouv" value="<?= $unMouv['num_Mouv'] ?>">
     <button type="submit">Confirmer la suppression</button>
 </form>

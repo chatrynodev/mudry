@@ -5,7 +5,9 @@
     <title>Supprimer un Aéroport</title>
 </head>
 <body>
-
+<header>
+   <?php include("includes/navbar.php"); ?>      
+</header>
 <h1>Supprimer un Aéroport</h1>
 
 <p>Es-tu sûr de vouloir supprimer l'aéroport suivant :</p>

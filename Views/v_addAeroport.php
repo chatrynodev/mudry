@@ -1,26 +1,66 @@
-<div id="creationAeroport">
-<form method="POST" action="index.php?uc=creerAeroport&action=confirmCreationAeroport">
-   <fieldset>
-     <legend>Création d'un nouvel aéroport</legend>
-		<p>
-			<label for="nom">Nom Aéroport*</label>
-			<input id="nom" type="text" name="nom" size="30" maxlength="45" required>
-		</p>
-		<p>
-			<label for="latitude">latitude*</label>
-		    <input id="latitude" type="text" name="latitude" size="30" maxlength="45" required>
-		</p>
-		<p>
-         <label for="longitude">longitude* </label>
-         <input id="longitude" type="text" name="longitude" size="10" maxlength="10" required>
-      </p>
-      <p>
-         <label for="codeCommercial_Aeroport">Code Commercial de l'aeroport</label>
-         <input id="codeCommercial_Aeroport" type="text" name="codeCommecial_Aeroport"  size="40" maxlength="40" required>
-      </p> 
-	  	<p>
-         <input type="submit" value="Valider" name="valider">
-         <input type="reset" value="Annuler" name="annuler"> 
-      </p>
+<header>
+   <?php include("includes/navbar.php"); ?>      
+</header>
+
+<h2>Créer un mouvement</h2>
+
+<div class="mouvement-container">
+
+<form method="POST" action="index.php?uc=mouvement&action=confirmAdd">
+
+    <label>Numéro de vol :</label>
+    <input type="text" name="num_Vol" required><br>
+
+    <label>Distance :</label>
+    <input type="number" step="0.01" name="distance"><br>
+
+    <label>Nombre de passagers :</label>
+    <input type="number" name="nbPassager"><br>
+
+    <label>Date départ :</label>
+    <input type="date" name="date_Depart"><br>
+
+    <label>Date arrivée :</label>
+    <input type="date" name="date_Arrive"><br>
+
+    <label>Durée :</label>
+    <input type="text" name="duree"><br>
+
+    <!-- MENU DÉROULANT DES AVIONS -->
+    <label>Avion (modèle & numéro de série) :</label>
+    <select name="id_Avion" required>
+        <option value="">-- Sélectionner un avion --</option>
+        <?php foreach ($lesAvions as $avion): ?>
+            <option value="<?= $avion['id_Avion'] ?>">
+                <?= $avion['id_Avion'] ?> — <?= htmlspecialchars($avion['codeInterne_Avion']) ?>
+            </option>
+        <?php endforeach; ?>
+    </select><br>
+
+    <!-- MENU DÉROULANT AÉROPORT ARRIVÉE -->
+    <label>Aéroport Arrivée :</label>
+    <select name="id_Aeroport_Arrivee" required>
+        <option value="">-- Sélectionner un aéroport --</option>
+        <?php foreach ($lesAeroports as $aero): ?>
+            <option value="<?= $aero['id_Aeroport'] ?>">
+                <?= htmlspecialchars($aero['nom_Aeroport']) ?> (<?= $aero['codeCommercial_Aeroport'] ?>)
+            </option>
+        <?php endforeach; ?>
+    </select><br>
+
+    <!-- MENU DÉROULANT AÉROPORT DÉPART -->
+    <label>Aéroport Départ :</label>
+    <select name="id_Aeroport_Depart" required>
+        <option value="">-- Sélectionner un aéroport --</option>
+        <?php foreach ($lesAeroports as $aero): ?>
+            <option value="<?= $aero['id_Aeroport'] ?>">
+                <?= htmlspecialchars($aero['nom_Aeroport']) ?> (<?= $aero['codeCommercial_Aeroport'] ?>)
+            </option>
+        <?php endforeach; ?>
+    </select><br>
+
+    <button type="submit" class="btn btn-add">Ajouter</button>
+
 </form>
+
 </div>

@@ -9,7 +9,7 @@ switch ($action) {
 
     case 'liste': {
         $model = new MouvementModel();
-        $mouvement = $model->getAllMouvements();
+        $lesMouvements = $model->getAllMouvements();
 
         // DEBUG (tu peux activer si ça ne marche toujours pas)
         // var_dump($aeroports); die();

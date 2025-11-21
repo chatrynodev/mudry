@@ -5,7 +5,9 @@
     <title>Modifier un Aéroport</title>
 </head>
 <body>
-
+<header>
+   <?php include("includes/navbar.php"); ?>      
+</header>
 <h1>Modifier l'Aéroport</h1>
 
 <form method="POST" action="index.php?uc=modifierAeroport&action=confirmerModification">

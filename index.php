@@ -21,8 +21,7 @@ switch($uc)
     }
     case 'modifierAvion': {
         include("Controllers/c_modifierAvion.php");
-        break;
-    }
+        break;    }
     case 'supprimerAvion': {
         include("Controllers/c_suppressionAvion.php");
         break;
@@ -49,6 +48,18 @@ switch($uc)
     }
     case 'voirMouvement' : {
         include("Controllers/c_voirMouvement.php");
+        break;
+    }
+    case 'addMouvement' : {
+        include("Controllers/c_addMouvement.php");
+        break;
+    }
+    case 'updateMouvement' : {
+        include("Controllers/c_updateMouvement.php");
+        break;
+    }
+    case 'deleteMouvement' : {
+        include("Controllers/c_deleteMouvement.php");
         break;
     }
 	case 'voirEmployer' : {

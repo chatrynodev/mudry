@@ -1,5 +1,5 @@
 <?php
-
+//nom du fichier : class.pdoMudry.inc.php
 class PdoMudry {
 
     private static $instance = null;

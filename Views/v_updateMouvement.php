@@ -1,35 +1,68 @@
+<header>
+    <?php include("includes/navbar.php"); ?>      
+</header>
+
 <h2>Modifier un mouvement</h2>
 
-<form method="POST" action="index.php?uc=mouvement&action=confirmUpdate">
+<div class="mouvement-container">
 
-<input type="hidden" name="num_Mouv" value="<?= $unMouv['num_Mouv'] ?>">
+<form method="POST" action="index.php?uc=updateMouvement&action=confirmUpdate">
 
-<label>Numéro de vol :</label>
-<input type="text" name="num_Vol" value="<?= $unMouv['num_Vol'] ?>"><br>
+    <input type="hidden" name="num_Mouv" value="<?= $unMouv['num_Mouv'] ?>">
 
-<label>Distance :</label>
-<input type="number" step="0.01" name="distance" value="<?= $unMouv['distance_Mouv'] ?>"><br>
+    <label>Numéro de vol :</label>
+    <input type="text" name="num_Vol" value="<?= $unMouv['num_Vol'] ?>" required><br>
 
-<label>Passagers :</label>
-<input type="number" name="nbPassager" value="<?= $unMouv['nb_PassagerMouv'] ?>"><br>
+    <label>Distance :</label>
+    <input type="number" step="0.01" name="distance" value="<?= $unMouv['distance_Mouv'] ?>"><br>
 
-<label>Date départ :</label>
-<input type="date" name="date_Depart" value="<?= $unMouv['date_Depart'] ?>"><br>
+    <label>Nombre de passagers :</label>
+    <input type="number" name="nbPassager" value="<?= $unMouv['nb_PassagerMouv'] ?>"><br>
 
-<label>Date arrivée :</label>
-<input type="date" name="date_Arrive" value="<?= $unMouv['date_Arrive'] ?>"><br>
+    <label>Date départ :</label>
+    <input type="date" name="date_Depart" value="<?= $unMouv['date_Depart'] ?>"><br>
 
-<label>Durée :</label>
-<input type="text" name="duree" value="<?= $unMouv['duree'] ?>"><br>
+    <label>Date arrivée :</label>
+    <input type="date" name="date_Arrive" value="<?= $unMouv['date_Arrive'] ?>"><br>
 
-<label>ID Avion :</label>
-<input type="number" name="id_Avion" value="<?= $unMouv['id_Avion'] ?>"><br>
+    <label>Durée :</label>
+    <input type="text" name="duree" value="<?= $unMouv['duree'] ?>"><br>
 
-<label>Aéroport Arrivée :</label>
-<input type="number" name="id_Aeroport_Arrivee" value="<?= $unMouv['id_Aeroport_Arrivee'] ?>"><br>
+    <!-- AVION -->
+    <label>Avion :</label>
+    <select name="id_Avion" required>
+        <?php foreach ($lesAvions as $avion): ?>
+            <option value="<?= $avion['id_Avion'] ?>"
+                <?= ($avion['id_Avion'] == $unMouv['id_Avion']) ? 'selected' : '' ?>>
+                <?= $avion['id_Avion'] ?> — <?= htmlspecialchars($avion['codeInterne_Avion']) ?>
+            </option>
+        <?php endforeach; ?>
+    </select><br>
 
-<label>Aéroport Départ :</label>
-<input type="number" name="id_Aeroport_Depart" value="<?= $unMouv['id_Aeroport_Depart'] ?>"><br>
+    <!-- ARRIVÉE -->
+    <label>Aéroport Arrivée :</label>
+    <select name="id_Aeroport_Arrivee" required>
+        <?php foreach ($lesAeroports as $aero): ?>
+            <option value="<?= $aero['id_Aeroport'] ?>"
+                <?= ($aero['id_Aeroport'] == $unMouv['id_Aeroport_Arrivee']) ? 'selected' : '' ?>>
+                <?= htmlspecialchars($aero['nom_Aeroport']) ?> (<?= $aero['codeCommercial_Aeroport'] ?>)
+            </option>
+        <?php endforeach; ?>
+    </select><br>
 
-<button type="submit">Modifier</button>
+    <!-- DÉPART -->
+    <label>Aéroport Départ :</label>
+    <select name="id_Aeroport_Depart" required>
+        <?php foreach ($lesAeroports as $aero): ?>
+            <option value="<?= $aero['id_Aeroport'] ?>"
+                <?= ($aero['id_Aeroport'] == $unMouv['id_Aeroport_Depart']) ? 'selected' : '' ?>>
+                <?= htmlspecialchars($aero['nom_Aeroport']) ?> (<?= $aero['codeCommercial_Aeroport'] ?>)
+            </option>
+        <?php endforeach; ?>
+    </select><br>
+
+    <button type="submit" class="btn btn-update">Mettre à jour</button>
+
 </form>
+
+</div>

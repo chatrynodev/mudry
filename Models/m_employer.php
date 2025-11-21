@@ -1,11 +1,12 @@
 <?php
 
-class EmployerModel {
+class ModelEmployer {
 
     private $pdo;
 
-    public function __construct(PDO $pdo) {
-        $this->pdo = $pdo;
+    public function __construct()
+    {
+        $this->pdo = PdoMudry::getPdoMudry()->getConnexion();
     }
 
     private function cleanString($value) {
@@ -23,8 +24,25 @@ class EmployerModel {
             return ["error" => "Erreur interne."];
         }
     }
+    /* ------------------------------
+       Récupérer un aéroport par ID
+       ------------------------------ */
+    public function getEmployerById($id) {
+        try {
+            $id = (int)$id;
 
-    public function insertEmployer($tel, $nom, $prenom) {
+            $sql = "SELECT * FROM employer WHERE id_Employer = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$id]);
+
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+
+        } catch (Exception $e) {
+            return ["error" => "Erreur interne lors de la récupération d’un employer."];
+        }
+    }
+
+    public function ajouterEmployer($tel, $nom, $prenom) {
         try {
             $tel = (int)$tel;
             $nom = $this->cleanString($nom);
@@ -40,7 +58,7 @@ class EmployerModel {
         }
     }
 
-    public function updateEmployer($id, $tel, $nom, $prenom) {
+    public function modifierEmployer($id, $tel, $nom, $prenom) {
         try {
             $id = (int)$id;
             $tel = (int)$tel;
@@ -58,7 +76,7 @@ class EmployerModel {
         }
     }
 
-    public function deleteEmployer($id) {
+    public function supprimerEmployer($id) {
         try {
             $id = (int)$id;
 
@@ -68,6 +86,15 @@ class EmployerModel {
 
         } catch (Exception $e) {
             return ["error" => "Erreur interne."];
+        }
+    }
+
+    // Retourne l'ID inséré en dernier par la connexion PDO
+    public function getLastInsertedId() {
+        try {
+            return $this->pdo->lastInsertId();
+        } catch (Exception $e) {
+            return false;
         }
     }
 }

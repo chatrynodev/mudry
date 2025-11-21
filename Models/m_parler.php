@@ -4,11 +4,12 @@ class ParlerModel {
 
     private $pdo;
 
-    public function __construct(PDO $pdo){
-        $this->pdo=$pdo;
+    public function __construct()
+    {
+        $this->pdo = PdoMudry::getPdoMudry()->getConnexion();
     }
 
-    public function insert($idEmployer,$idLangue){
+    public function insertParler($idEmployer,$idLangue){
         try{
             $idEmployer=(int)$idEmployer;
             $idLangue=(int)$idLangue;
@@ -20,7 +21,7 @@ class ParlerModel {
         }catch(Exception $e){ return ["error"=>"Erreur interne."]; }
     }
 
-    public function delete($idEmployer,$idLangue){
+    public function deleteParler($idEmployer,$idLangue){
         try{
             $idEmployer=(int)$idEmployer;
             $idLangue=(int)$idLangue;

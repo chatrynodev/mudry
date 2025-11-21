@@ -1,43 +1,58 @@
-<div id="employer">
-<?php
-if (isset($lesEmployers) && is_array($lesEmployers)) {
-    foreach ($lesEmployers as $unEmployer)
-    {
-        $id     = $unEmployer['id_Employer'];
-        $nom    = $unEmployer['nom_Employer'];
-        $prenom = $unEmployer['prenom_Employer'];
-        $tel    = $unEmployer['tel_Employer'];
-        ?>
-        
-        <ul>
-            <li><strong><?php echo $prenom . " " . $nom; ?></strong></li>
-            <li><?php echo "Téléphone : " . $tel; ?></li>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employés</title>
+    <link rel="stylesheet" href="/mudry/Models/css/gestion.css">
+</head>
 
-            <li>
-                <a href="index.php?uc=employer&action=voir&id=<?php echo $id; ?>">
-                    <img src="images/loupe.png" title="Voir détails" />
-                </a>
-            </li>
+<body>
+<header>
+   <?php //include("includes/navbar.php"); ?>      
+</header>
+<h2>Liste des employés</h2>
 
-            <li>
-                <a href="index.php?uc=employer&action=modifier&id=<?php echo $id; ?>">
-                    <img src="images/edit.png" title="Modifier l'employé" />
-                </a>
-            </li>
+<div class="employer-container">
 
-            <li>
-                <a href="index.php?uc=employer&action=supprimer&id=<?php echo $id; ?>"
-                   onclick="return confirm('Supprimer cet employé ?');">
-                    <img src="images/delete.png" title="Supprimer" />
-                </a>
-            </li>
+    <div class="employer-header">
+        <span>Liste des employés enregistrés</span>
+        <a class="btn btn-add" href="index.php?uc=ajouterEmployer&action=formAdd">
+            + Ajouter un employé
+        </a>
+    </div>
 
-        </ul>
-    
-    <?php
-    }
-} else {
-    echo "Aucun employé trouvé.";
-}
-?>
+    <table class="employer-table">
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Numéro de téléphone</th>
+        </tr>
+
+        <?php if (!empty($lesEmployers) && is_array($lesEmployers)) : ?>
+            <?php foreach($lesEmployers as $employer) : ?>
+            <tr>
+                <td><?= $employer['id_Employer'] ?></td>
+                <td><?= $employer['nom_Employer'] ?></td>
+                <td><?= $employer['prenom_Employer'] ?></td>
+                <td><?= $employer['tel_Employer'] ?></td>
+
+                <td class="employer-actions">
+                    <a class="btn btn-update"
+                       href="index.php?uc=modifierEmployer&action=formUpdate&id_Employer=<?= $employer['id_Employer'] ?>">
+                        Modifier
+                    </a>
+                    <a class="btn btn-delete"
+                       href="index.php?uc=supprimerEmployer&action=supprimer&id_Employer=<?= $employer['id_Employer'] ?>">
+                        Supprimer
+                    </a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <tr><td colspan="5">Aucun employé trouvé.</td></tr>
+        <?php endif; ?>
+    </table>
+
 </div>

@@ -4,11 +4,12 @@ class CommercialModel {
 
     private $pdo;
 
-    public function __construct(PDO $pdo){
-        $this->pdo=$pdo;
+    public function __construct()
+    {
+        $this->pdo = PdoMudry::getPdoMudry()->getConnexion();
     }
 
-    public function insert($idEmployer){
+    public function insertCommercial($idEmployer){
         try{
             $idEmployer=(int)$idEmployer;
 

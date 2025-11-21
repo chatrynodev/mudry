@@ -4,11 +4,12 @@ class TechnicienModel {
 
     private $pdo;
 
-    public function __construct(PDO $pdo){
-        $this->pdo=$pdo;
+    public function __construct()
+    {
+        $this->pdo = PdoMudry::getPdoMudry()->getConnexion();
     }
 
-    public function insert($idEmployer,$nbHeure){
+    public function ajouterTechnicien($idEmployer,$nbHeure){
         try{
             $idEmployer=(int)$idEmployer;
             $nbHeure=(int)$nbHeure;

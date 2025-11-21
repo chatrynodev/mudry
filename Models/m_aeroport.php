@@ -22,7 +22,7 @@ class AeroportModel {
         try {
             $sql = "SELECT * FROM aeroport ORDER BY nom_Aeroport ASC";
             $stmt = $this->pdo->prepare($sql);
-            $stmt->execute();)
+            $stmt->execute();
 
         } catch (Exception $e) {
             return ["error" => "Erreur interne."];

@@ -37,12 +37,22 @@ switch($uc)
         include("Controllers/c_suppressionAeroport.php");
         break;
     }
+
+
     case 'voirEmployer' : {
         include("Controllers/c_voirEmployer.php");
         break;
     }
-    case 'gererEmployer' : { 
-        include("Controllers/c_gestionEmployer.php");
-        break; 
+    case 'ajouterEmployer' : {
+        include("Controllers/c_ajouterEmployer.php");
+        break;
+    }
+    case 'supprimerEmployer' : {
+        include("Controllers/c_supprimerEmployer.php");
+        break;
+    }
+    case 'modifierEmployer' : {
+        include("Controllers/c_modifierEmployer.php");
+        break;
     }
 }

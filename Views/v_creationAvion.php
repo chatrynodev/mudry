@@ -1,43 +1,32 @@
-<!doctype html>
-<html>
-    <head>
-        <title>Création d'un nouvel Avion</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <link href="style.css" rel="stylesheet" type="text/css" />
+<header>
+   <?php include("includes/navbar.php"); ?>      
+</header>
 
-    </head>
+<h2>Créer un avion</h2>
 
+<div class="mouvement-container">
 
-    <body>
-    <p><h1>Nouvel avion cree :</h1></p><br />
-        <form action="index.php?uc=creerAvion&action=confirmCreatAvion" method="post">
+<form method="POST" action="index.php?uc=creerAvion&action=confirmAdd">
 
-        <table>
-        <tbody>
-            <tr><td>Numéro de Série</td><td><input name="numSerie" size=20></td></tr>
-            <tr><td>Code Interne</td><td><input name="codeInterne" size=20></td></tr>
-            <tr>
-                <td>Sélectionner un modèle</td>
-                <td>
-                    <?php if (!isset($lesModeles)) $lesModeles = []; ?>
-                    <select name="id_Modele">
-                        <option value="">-- Aucun --</option>
-                        <?php foreach ($lesModeles as $modele) {
-                            $id = $modele['id_Modele'] ?? '';
-                            $lib = $modele['libelle_Modele'] ?? $id;
-                            $nb = $nbsieges[]
-                            if ($id !== '') {
-                                echo '<option value="'.htmlspecialchars($id).'">'.htmlspecialchars($lib).'</option>';
-                            }
-                        } ?>
-                    </select>
-                </td>
-            </tr>
-        </tbody>
-        </table>
-                <br />
-        <input type="submit" value="Valider">
-    </form>
+    <label>Numéro de l'Avion :</label>
+    <input type="text" name="numSerie_Avion" required><br>
 
-    </body>
-</html>
+    <label>Code Interne :</label>
+    <input type="text" name="codeInterne_Avion"><br>
+
+    <!-- MENU DÉROULANT DES MODELES -->
+    <label>Modèle :</label>
+    <select name="id_Modele" required>
+        <option value="">-- Sélectionner un modèle --</option>
+        <?php foreach ($lesModeles as $modele): ?>
+            <option value="<?= $modele['id_Modele'] ?>">
+                <?= $modele['id_Modele'] ?> — <?= htmlspecialchars($modele['libelle_Modele']) ?>
+            </option>
+        <?php endforeach; ?>
+    </select><br>
+
+    <button type="submit" class="btn btn-add">Ajouter</button>
+
+</form>
+
+</div>

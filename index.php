@@ -11,6 +11,10 @@ $pdo = PdoMudry::getPdoMudry();
 switch($uc) 
 {
     case 'accueil': {
+        include("Views/v_Accueil.php");
+        break;
+    }
+    case 'voirAvion': {
         include("Controllers/c_voirAvions.php");
         break;
     }

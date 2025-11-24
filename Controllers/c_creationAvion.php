@@ -1,32 +1,35 @@
 <?php
-$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
-switch ($action) {
-    case 'creerAvion': {
-        include("Views/v_creationAvion.php");
-        break;
-    }
-    case 'confirmCreatAvion': {
-        // les noms envoyés par v_creationAvion.php sont "numSerie" et "codeInterne"
-        $numSerie_Avion = isset($_REQUEST['numSerie']) ? trim($_REQUEST['numSerie']) : null;
-        $codeInterne_Avion = isset($_REQUEST['codeInterne']) ? trim($_REQUEST['codeInterne']) : null;
-        $id_Modele = isset($_REQUEST['id_Modele']) && $_REQUEST['id_Modele'] !== '' ? intval($_REQUEST['id_Modele']) : null;
+require_once dirname(__DIR__) . '/Models/m_avion.php';
+require_once dirname(__DIR__) . '/Models/m_modele.php';
 
-        if ($numSerie_Avion === null || $codeInterne_Avion === null) {
-            $erreur = "Numéro de série et code interne requis.";
-            include("Views/v_creationAvion.php");
-            break;
-        }
+$modeleModele = new ModeleModel();
+$modeleAvion = new AvionModel();
 
-        $pdo->creerAvion($numSerie_Avion, $codeInterne_Avion, $id_Modele);
+$lesAvions = $modeleAvion->getAllAvions();
+$lesModeles = $modeleModele->getAllModeles();
 
-        $lesAvions = $pdo->getLesAvions();
-        include("Views/v_avions.php");
+$action = $_REQUEST['action'];
+
+switch ($action) 
+{
+    case 'creerAvion':
+        include dirname(__DIR__) . '/Views/v_creationAvion.php';
         break;
-    }
-    default: {
-        $lesAvions = $pdo->getLesAvions();
-        include("Views/v_avions.php");
+
+    case 'confirmAdd':
+        $modeleAvion->creerAvion(
+            $_POST['id_Avion'],
+            $_POST['numSerie_Avion'],
+            $_POST['codeInterne_Avion'],
+            $_POST['id_Modele']
+        );
+        header("Location: index.php?uc=voirAvion&action=liste");
         break;
-    }
 }
-?>
+/*
+<br /><b>Warning</b>:  Trying to access array offset on false in 
+<b>C:\laragon\www\mudry\Views\v_modificationAvion.php</b> on line <b>18</b><br />
+<br /><b>Deprecated</b>:  htmlspecialchars(): Passing null to parameter #1 
+($string) of type string is deprecated in <b>
+C:\laragon\www\mudry\Views\v_modificationAvion.php</b> on line <b>18</b><br />
+*/

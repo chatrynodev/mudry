@@ -15,6 +15,8 @@
             <tr>
                 <td>Numéro de Série</td>
                 <td>Code Interne</td>
+                <td>Modèle</td>
+                <td colspan="2">Actions</td>
             </tr>
             <?php
 
@@ -27,11 +29,12 @@
                 <tr>
                         <td width=150><?php echo $num ?></td>
                         <td width=150><?php echo $code ?></td>
+                        <td width=150><?php echo $modele ?></td>
                     <?php
 
                     ?>
-                        <td width=30><a href="index.php?uc=modifierAvion&action=modificationAvion&numSerie=<?php echo $num ?>">Modifier</a></td>
-                        <td width=30><a href="index.php?uc=supprimerAvion&action=suppressionAvion&numSerie=<?php echo $num ?>">Supprimer</a></td>
+                        <td width=30><a href="index.php?uc=modifierAvion&action=modifierAvion&id_Avion=<?php echo $unAvion['id_Avion'] ?>">Modifier</a></td>
+                        <td width=30><a href="index.php?uc=supprimerAvion&action=supprimerAvion&id_Avion=<?php echo $unAvion['id_Avion'] ?>">Supprimer</a></td>
                 </tr>
                 <?php
             }

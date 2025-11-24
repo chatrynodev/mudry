@@ -53,4 +53,13 @@ class AvionModel
             ':id_Avion' => $id_Avion
         ]);
     }
+
+        public function supprimerAvion($id_Avion, $numSerie_Avion, $codeInterne_Avion, $id_Modele) {
+        $sql = 'DELETE FROM avion
+                WHERE id_Avion = :id_Avion';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':id_Avion' => $id_Avion
+        ]);
+}
 }

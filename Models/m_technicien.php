@@ -20,4 +20,15 @@ class TechnicienModel {
 
         }catch(Exception $e){ return ["error"=>"Erreur interne."]; }
     }
+
+    public function getNbHeuresTechnicienById($idEmployer){
+        try{
+            $sql="SELECT nbHeureVol_Technicien FROM technicien WHERE id_Employer=?";
+            $stmt=$this->pdo->prepare($sql);
+            $result = $stmt->execute([$idEmployer]);
+            $data = $stmt->fetch();
+            return $data['nbHeureVol_Technicien'];
+
+        }catch(Exception $e){ return ["error"=>"Erreur interne."]; }
+    }
 }

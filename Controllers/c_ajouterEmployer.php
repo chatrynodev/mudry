@@ -19,21 +19,40 @@ $action = $_REQUEST['action'];
 switch ($action) 
 {
     case 'formAdd':
+        $lesLangues = $modelLangues->getAllLangues();
         include dirname(__DIR__) . '/Views/v_ajouterEmployer.php';
         break;
 
-    case 'confirmAddTechnicien': // Confirmation de l'ajout d'un technicien
+    case 'confirmAddEmployer': // Confirmation de l'ajout d'un technicien
         $modelEmployer->ajouterEmployer(
             $_POST['tel_Employer'],
             $_POST['nom_Employer'],
             $_POST['prenom_Employer']
-            
         );
-        $modelTechnicien->ajouterTechnicien(
-            $modelEmployer->getLastInsertedId(),
-            $_POST['nb_Heures']
-        );
+
+        $id = $modelEmployer->getLastInsertedId();
+
+        if ($_POST['role'] === 'technicien') {
+            $modelTechnicien->ajouterTechnicien(
+                $id,
+                $_POST['nb_Heures']
+            );
+        }
+        
+
+
+        if ($_POST['role'] === 'commercial') {
+            $modelCommercial->insertCommercial(
+                $id
+            );
+            foreach ($_POST['langues'] as $idlangue) {
+                $modelParler->insertParler(
+                    $id,
+                    $idlangue
+                );
+            }
+        }
+
         header("Location: index.php?uc=voirEmployer&action=liste");
         break;
-    
 }

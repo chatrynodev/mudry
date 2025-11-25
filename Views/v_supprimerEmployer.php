@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Supprimer un Employé</title>
+    <title>Supprimer un employé</title>
+    <link rel="stylesheet" href="/mudry/Models/css/gestion.css">
 </head>
 <body>
 <header>
@@ -15,15 +16,15 @@
 
 <ul>
     <li>
-        <strong>Nom :</strong> 
+        <strong>Nom : </strong> 
         <?= htmlspecialchars($employer['nom_Employer']) ?>
     </li>
     <li>
-        <strong>Prénom :</strong> 
+        <strong>Prénom : </strong> 
         <?= htmlspecialchars($employer['prenom_Employer']) ?>
     </li>
     <li>
-        <strong>Numéro de téléphone :</strong> 
+        <strong>Numéro de téléphone : </strong> 
         <?= htmlspecialchars($employer['tel_Employer']) ?>
     </li>
 </ul>
@@ -34,7 +35,7 @@
     <p>Voulez-vous vraiment supprimer cet employé ?</p>
 
     <button type="submit">Oui</button>
-    <a href="index.php?uc=voirEmployer&action=liste">Non</a>
+    <button href="index.php?uc=voirEmployer&action=liste">Non</button>
 </form>
 
 </body>

@@ -25,7 +25,7 @@ class ModelEmployer {
         }
     }
     /* ------------------------------
-       Récupérer un aéroport par ID
+       Récupérer un Employé par ID
        ------------------------------ */
     public function getEmployerById($id) {
         try {

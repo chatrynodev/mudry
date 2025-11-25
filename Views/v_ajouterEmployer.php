@@ -1,12 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un Employé</title>
+    <link rel="stylesheet" href="/mudry/Models/css/gestion.css">
+</head>
+
+<body>
 <header>
-   <?php //include("includes/navbar.php"); ?>      
+   <?php //include("includes/navbar.php"); ?>  
 </header>
 
 <h2>Ajouter un employé : </h2>
 
 <div class="employer-container">
 
-<form method="POST" action="index.php?uc=ajouterEmployer&action=confirmAddTechnicien">
+<form method="POST" action="index.php?uc=ajouterEmployer&action=confirmAddEmployer">
 
     <label>Nom :</label>
     <input type="text" name="nom_Employer"><br>
@@ -18,44 +27,37 @@
     <input type="number" name="tel_Employer"><br>
 
     <!-- MENU DÉROULANT QUALIFICATION EMPLOYE -->
-    <label>Type d'employé :</label>
-    <select name="id_Employer" required>
-        <option value="">-- Sélectionner un type --</option>
-        <option value="commercial">Commercial</option>
-        <option value="technicien">Technicien</option>
-    </select><br>
+    <label for="">Sélectionner le type d'employé : </label><br>
+    <label>
+        <input type="radio" name="role" value="technicien">
+        Technicien
+    </label><br>
+
+    <label>
+        <input type="radio" name="role" value="commercial">
+        Commercial
+    </label><br>
 
     <!-- CHAMPS SUPPLÉMENTAIRE POUR TECHNICIEN -->
     <label>Nombre d'heures de vol (pour technicien) :</label>
     <input type="number" name="nb_Heures"><br>
 
+    <!-- CHAMPS SUPPLÉMENTAIRE POUR COMMERCIAL -->
+    <label>Langues parlées : </label>
+    <?php foreach ($lesLangues as $langue): ?>
+        <br>
+        <label for="">
+            <input type="checkbox" name="langues[]" value="<?= $langue["id_Langue"] ?>" class="choixUnique">
+            <?= $langue["libelle_Langue"] ?>
+        </label>
+    <?php endforeach; ?>
+    <br>
 
-
-
-    <!-- MENU DÉROULANT AÉROPORT ARRIVÉE 
-    <label>Aéroport Arrivée :</label>
-    <select name="id_Aeroport_Arrivee" required>
-        <option value="">-- Sélectionner un aéroport --</option>
-        <//?php foreach ($lesAeroports as $aero): ?>
-            <option value="<//?= $aero['id_Aeroport'] ?>">
-                <//?= htmlspecialchars($aero['nom_Aeroport']) ?> (<//?= $aero['codeCommercial_Aeroport'] ?>)
-            </option>
-        <//?php endforeach; ?>
-    </select><br>
-
-     MENU DÉROULANT AÉROPORT DÉPART 
-    <label>Aéroport Départ :</label>
-    <select name="id_Aeroport_Depart" required>
-        <option value="">-- Sélectionner un aéroport --</option>
-        <//?php foreach ($lesAeroports as $aero): ?>
-            <option value="<//?= $aero['id_Aeroport'] ?>">
-                <//?= htmlspecialchars($aero['nom_Aeroport']) ?> (<//?= $aero['codeCommercial_Aeroport'] ?>)
-            </option>
-        <//?php endforeach; ?>
-    </select><br>-->
-    <button type="submit" class="btn btn-add" onclick="validateAeroports()">Ajouter</button>
+    
+    <button type="submit" class="btn btn-add">Ajouter</button>
 
 </form>
 
 </div>
-<script src="/mudry/Models/js/script_aeroportMouv.js"></script>
+</body>
+</html>

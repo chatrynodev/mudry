@@ -32,4 +32,19 @@ class ParlerModel {
 
         }catch(Exception $e){ return ["error"=>"Erreur interne."]; }
     }
+
+    public function getLanguesByCommercialId($idEmployer){
+        try{
+            $sql="SELECT id_Langue FROM parler WHERE id_Employer=?";
+            $stmt=$this->pdo->prepare($sql);
+            $result = $stmt->execute([$idEmployer]);
+            $data = $stmt->fetchAll();
+            $langues = [];
+            foreach ($data as $row) {
+                $langues[] = $row['id_Langue'];
+            }
+            return $langues;
+
+        }catch(Exception $e){ return ["error"=>"Erreur interne."]; }
+    }
 }

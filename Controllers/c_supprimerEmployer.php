@@ -3,6 +3,7 @@
 require_once dirname(__DIR__) . '/Models/m_employer.php';
 require_once dirname(__DIR__) . '/Models/m_technicien.php';
 require_once dirname(__DIR__) . '/Models/m_commercial.php';
+require_once dirname(__DIR__) . '/Models/f_verifTypeEmployer.php';
 
 $action = $_REQUEST['action'] ?? 'confirmer';
 
@@ -18,6 +19,18 @@ switch ($action) {
         }
 
         $id = (int) $_GET['id_Employer'];
+        $type = verifierTypeEmployer($pdo, $id);
+
+        if ($type = verifierTypeEmployer((new ModelEmployer())->getPdo(), $id)) {
+            // Supprimer les entrées associées dans les tables spécifiques
+            if ($type === "technicien") {
+                $modelTech = new ModelTechnicien();
+                $modelTech->supprimerTechnicien($id);
+            } elseif ($type === "commercial") {
+                $modelCom = new ModelCommercial();
+                $modelCom->supprimerCommercial($id);
+            }
+        }
 
         $modelEmployer = new ModelEmployer();
         $employer = $modelEmployer->getEmployerById($id);

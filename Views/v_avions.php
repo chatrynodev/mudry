@@ -33,8 +33,13 @@
                     <?php
 
                     ?>
-                        <td width=30><a href="index.php?uc=modifierAvion&action=modifierAvion&id_Avion=<?php echo $unAvion['id_Avion'] ?>">Modifier</a></td>
-                        <td width=30><a href="index.php?uc=supprimerAvion&id_Avion=<?php echo $unAvion['id_Avion'] ?>">Supprimer</a></td>
+                        <td class="mouvement-actions">
+                            <a class="btn btn-update"
+                                href="index.php?uc=modifierAvion&action=modifierAvion&id_Avion=<?php echo $unAvion['id_Avion'] ?>">Modifier</a></td>
+
+                        <td class="mouvement-actions">
+                            <a class="btn btn-delete"
+                                href="index.php?uc=supprimerAvion&id_Avion=<?php echo $unAvion['id_Avion'] ?>">Supprimer</a></td>
                 </tr>
                 <?php
             }

@@ -1,24 +1,23 @@
 <?php
-// c_supprimerEmployer.php — version sécurisée
 
 require_once dirname(__DIR__) . '/Models/m_employer.php';
 require_once dirname(__DIR__) . '/Models/m_technicien.php';
 require_once dirname(__DIR__) . '/Models/m_commercial.php';
 
-$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : 'confirmer';
+$action = $_REQUEST['action'] ?? 'confirmer';
 
 switch ($action) {
 
     // ------------------------------------------------
-    // AFFICHER LA PAGE DE CONFIRMATION
+    // AFFICHAGE DE LA CONFIRMATION
     // ------------------------------------------------
-    case 'confirmer': {
+    case 'supprimer': {
 
-        if (!isset($_GET['id'])) {
-            die("ID manquant pour la suppression.");
+        if (!isset($_GET['id_Employer'])) {
+            die("ID manquant dans l’URL.");
         }
 
-        $id = (int) $_GET['id'];
+        $id = (int) $_GET['id_Employer'];
 
         $modelEmployer = new ModelEmployer();
         $employer = $modelEmployer->getEmployerById($id);
@@ -34,7 +33,7 @@ switch ($action) {
     // ------------------------------------------------
     // SUPPRESSION EFFECTIVE
     // ------------------------------------------------
-    case 'supprimer': {
+    case 'confirmer': {
 
         if (!isset($_POST['id'])) {
             die("ID manquant.");
@@ -46,8 +45,7 @@ switch ($action) {
         $ok = $modelEmployer->supprimerEmployer($id);
 
         if (!$ok) {
-            echo "Erreur lors de la suppression.";
-            exit;
+            die("Erreur lors de la suppression.");
         }
 
         header("Location: index.php?uc=voirEmployer&action=liste");

@@ -2,12 +2,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Supprimer un Aéroport</title>
+    <title>Supprimer un Employé</title>
 </head>
 <body>
 <header>
    <?php //include("includes/navbar.php"); ?>      
 </header>
+
 <h1>Supprimer un employé</h1>
 
 <p>Es-tu sûr de vouloir supprimer l'employé suivant :</p>
@@ -27,16 +28,13 @@
     </li>
 </ul>
 
-<form method="POST" action="index.php?uc=supprimerEmployer&action=supprimer">
-
+<form method="POST" action="index.php?uc=supprimerEmployer&action=confirmer">
     <input type="hidden" name="id" value="<?= $employer['id_Employer'] ?>">
 
-    <button type="submit" style="color: white; background:red;">Supprimer définitivement</button>
+    <p>Voulez-vous vraiment supprimer cet employé ?</p>
 
-    <button type="button" onclick="window.location.href='index.php?uc=voirEmployer&action=liste'">
-        Annuler
-    </button>
-
+    <button type="submit">Oui</button>
+    <a href="index.php?uc=voirEmployer&action=liste">Non</a>
 </form>
 
 </body>

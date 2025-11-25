@@ -9,7 +9,7 @@
 </head>
 <body>
     <form action="index.php?uc=creerAvion&action=creerAvion" method="post">
-        <p><H1>Liste des Avions</H1></p>
+        <p><h2>Liste des Avions</h2></p>
 
         <table border=3 cellspacing=1>
             <tr>

@@ -4,7 +4,7 @@
 <head>
     <title>Liste des Avions</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="gestion.css">
+    <link rel="stylesheet" href="/mudry/Models/css/gestion.css">
 
 </head>
 <body>
@@ -34,7 +34,7 @@
 
                     ?>
                         <td width=30><a href="index.php?uc=modifierAvion&action=modifierAvion&id_Avion=<?php echo $unAvion['id_Avion'] ?>">Modifier</a></td>
-                        <td width=30><a href="index.php?uc=supprimerAvion&action=supprimerAvion&id_Avion=<?php echo $unAvion['id_Avion'] ?>">Supprimer</a></td>
+                        <td width=30><a href="index.php?uc=supprimerAvion&id_Avion=<?php echo $unAvion['id_Avion'] ?>">Supprimer</a></td>
                 </tr>
                 <?php
             }

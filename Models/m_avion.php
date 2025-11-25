@@ -27,6 +27,21 @@ class AvionModel
         return $req->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function getAvionIsInMouvement($id)
+    {
+        $sql = "SELECT * FROM mouvement WHERE id_Avion = ?";
+        $req = $this->pdo->prepare($sql);
+        $req->execute([$id]);
+        $result = $req->fetch(PDO::FETCH_ASSOC);
+
+        if ($result) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public function creerAvion($id_Avion, $numSerie_Avion, $codeInterne_Avion, $id_Modele) {
         $sql = 'INSERT INTO avion (id_Avion, numSerie_Avion, codeInterne_Avion, id_Modele)
                 VALUES (:id_Avion, :numSerie, :codeInterne, :id_Modele)';
@@ -54,12 +69,12 @@ class AvionModel
         ]);
     }
 
-        public function supprimerAvion($id_Avion, $numSerie_Avion, $codeInterne_Avion, $id_Modele) {
+    public function supprimerAvion($id_Avion, $id_Modele) {
         $sql = 'DELETE FROM avion
                 WHERE id_Avion = :id_Avion';
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             ':id_Avion' => $id_Avion
         ]);
-}
+    }
 }

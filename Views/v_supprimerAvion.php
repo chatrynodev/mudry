@@ -1,3 +1,9 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier un Avion</title>
+    <link rel="stylesheet" href="/mudry/Models/css/gestion.css">
+</head>
+
 <header>
    <?php include("includes/navbar.php"); ?>      
 </header>
@@ -9,5 +15,6 @@
 
 <form method="POST" action="index.php?uc=supprimerAvion&action=confirmDelete">
     <input type="hidden" name="id_Avion" value="<?= $avion['id_Avion'] ?>">
+    <input type="hidden" name="id_Modele" value="<?= $avion['id_Modele'] ?>">
     <button type="submit">Confirmer la suppression</button>
 </form>

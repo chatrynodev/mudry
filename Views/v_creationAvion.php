@@ -1,3 +1,9 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier un Avion</title>
+    <link rel="stylesheet" href="/mudry/Models/css/gestion.css">
+</head>
+
 <header>
    <?php include("includes/navbar.php"); ?>      
 </header>

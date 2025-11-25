@@ -29,8 +29,8 @@
     </p>
 
     <p>
-        <button type="submit">Enregistrer</button>
-        <button type="button" onclick="window.location.href='index.php?uc=voirAvion&action=liste'">
+        <button type="submit" class="btn btn-add">Enregistrer</button>
+        <button type="button" class="btn btn-add" onclick="window.location.href='index.php?uc=voirAvion&action=liste'">
             Annuler
         </button>
     </p>

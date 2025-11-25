@@ -1,72 +1,62 @@
 <?php
 
-class ModeleModel {
+require_once dirname(__DIR__) . '/Models/class.pdoMudry.inc.php';
 
+class ModeleModel
+{
     private $pdo;
 
-    public function __construct() {
+    public function __construct()
+    {
+        // ✔ On récupère l’instance — puis la connexion PDO
         $this->pdo = PdoMudry::getPdoMudry()->getConnexion();
     }
 
-    private function cleanString($v) {
-        return htmlspecialchars(trim($v), ENT_QUOTES, 'UTF-8');
+    public function getAllModeles()
+    {
+        $sql = "SELECT * FROM modele ORDER BY id_Modele ASC";
+        $req = $this->pdo->query($sql);
+        return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getAllModeles() {
-        try {
-            $sql = "SELECT * FROM modele ORDER BY libelle_Modele ASC";
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch(Exception $e) { return ["error"=>"Erreur interne."]; }
-    }
-    public function getAeroportById($id) {
-        try {
-            $id = (int)$id;
-
-            $sql = "SELECT * FROM aeroport WHERE id_Aeroport = ?";
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([$id]);
-
-            return $stmt->fetch(PDO::FETCH_ASSOC);
-
-        } catch (Exception $e) {
-            return ["error" => "Erreur interne lors de la récupération d’un aéroport."];
-        }
+    public function getModeleById($id)
+    {
+        $sql = "SELECT * FROM Modele WHERE id_Modele = ?";
+        $req = $this->pdo->prepare($sql);
+        $req->execute([$id]);
+        return $req->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function insert($libelle, $nbSiege) {
-        try {
-            $libelle = $this->cleanString($libelle);
-            $nbSiege = (int)$nbSiege;
-
-            $sql = "INSERT INTO modele (libelle_Modele, nbSiegeMax_Modele) VALUES (?,?)";
-            $stmt = $this->pdo->prepare($sql);
-            return $stmt->execute([$libelle,$nbSiege]);
-
-        } catch(Exception $e){ return ["error"=>"Erreur interne."]; }
+    public function creerModele($id_Modele, $libelle_Modele, $nbSiegeMax_Modele) {
+        $sql = 'INSERT INTO modele (id_Modele, libelle_Modele, nbSiegeMax_Modele)
+                VALUES (:id_Modele, :libelle, :nbSiegeMax)';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':id_Modele' => $id_Modele,
+            ':libelle' => $libelle_Modele,
+            ':nbSiegeMax' => $nbSiegeMax_Modele,
+        ]);
     }
 
-    public function update($id, $libelle, $nbSiege) {
-        try {
-            $id = (int)$id;
-            $libelle = $this->cleanString($libelle);
-            $nbSiege = (int)$nbSiege;
-
-            $sql = "UPDATE modele SET libelle_Modele=?, nbSiegeMax_Modele=? WHERE id_Modele=?";
-            $stmt = $this->pdo->prepare($sql);
-            return $stmt->execute([$libelle,$nbSiege,$id]);
-
-        } catch(Exception $e){ return ["error"=>"Erreur interne."]; }
+    public function modifierModele($id_Modele, $libelle_Modele, $nbSiegeMax_Modele) {
+        $sql = 'UPDATE modele
+                SET libelle_Modele = :libelle_Modele,
+                    nbSiegeMax_Modele = :nbSiegeMax_Modele,
+                WHERE id_Modele = :id_Modele';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':libelle_Modele' => $libelle_Modele,
+            ':nbSiegeMax_Modele' => $nbSiegeMax_Modele,
+            ':id_Modele' => $id_Modele,
+        ]);
     }
 
-    public function delete($id) {
-        try {
-            $id = (int)$id;
-            $sql = "DELETE FROM modele WHERE id_Modele=?";
-            $stmt = $this->pdo->prepare($sql);
-            return $stmt->execute([$id]);
-
-        } catch(Exception $e){ return ["error"=>"Erreur interne."]; }
+    public function supprimerModele($id_Modele) {
+        $sql = 'DELETE FROM modele
+                WHERE id_Modele = :id_Modele';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':id_Modele' => $id_Modele
+        ]);
     }
 }

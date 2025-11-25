@@ -47,7 +47,9 @@
             </table>
             </br>
 
-            <input type="submit" value="Créer un nouvel avion">
+            <input class="btn" type="submit" value="Créer un nouvel avion">
     </form>
+        </br>
+    <button class="btn">Voir les modèles d'avions<a href="Views/v_modele.php"></a></button>
 </body>
 </html>

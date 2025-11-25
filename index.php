@@ -30,6 +30,22 @@ switch($uc)
         include("Controllers/c_suppressionAvion.php");
         break;
     }
+    case 'voirModele': {
+        include("Controllers/c_voirModele.php");
+        break;
+    }
+    case 'creerModele': {
+        include("Controllers/c_creationModele.php");
+        break;
+    }
+    case 'modifierModele': {
+        include("Controllers/c_modifierModele.php");
+        break;
+    }
+    case 'supprimerModele': {
+        include("Controllers/c_suppressionModele.php");
+        break;
+    }
     case 'creerAeroport': {
         include("Controllers/c_creationAeroport.php");
         break;

@@ -16,5 +16,5 @@
 <form method="POST" action="index.php?uc=supprimerAvion&action=confirmDelete">
     <input type="hidden" name="id_Avion" value="<?= $avion['id_Avion'] ?>">
     <input type="hidden" name="id_Modele" value="<?= $avion['id_Modele'] ?>">
-    <button type="submit">Confirmer la suppression</button>
+    <button type="submit" class="btn btn-add">Confirmer la suppression</button>
 </form>

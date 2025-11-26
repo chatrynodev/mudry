@@ -24,17 +24,18 @@
 
     <table class="mouvement-table">
         <tr>
-            <th>ID</th><th>Vol</th><th>Distance</th><th>Passagers</th><th>Départ</th><th>Arrivée</th><th>Actions</th>
+            <th>ID</th><th>Vol</th><th>Distance</th><th>Passagers</th>
+            <th>Départ</th><th>Arrivée</th><th>Actions</th>
         </tr>
 
         <?php foreach($lesMouvements as $mouv) : ?>
         <tr>
-            <td><?= $mouv['num_Mouv'] ?></td>
-            <td><?= $mouv['num_Vol'] ?></td>
-            <td><?= $mouv['distance_Mouv'] ?></td>
-            <td><?= $mouv['nb_PassagerMouv'] ?></td>
-            <td><?= $mouv['date_Depart'] ?></td>
-            <td><?= $mouv['date_Arrive'] ?></td>
+            <td><?= htmlspecialchars($mouv['num_Mouv']) ?></td>
+            <td><?= htmlspecialchars($mouv['num_Vol']) ?></td>
+            <td><?= htmlspecialchars($mouv['distance_Mouv']) ?></td>
+            <td><?= htmlspecialchars($mouv['nb_PassagerMouv']) ?></td>
+            <td><?= htmlspecialchars($mouv['date_Depart']) ?></td>
+            <td><?= htmlspecialchars($mouv['date_Arrive']) ?></td>
 
             <td class="mouvement-actions">
                 <a class="btn btn-update"
@@ -46,9 +47,17 @@
                    href="index.php?uc=deleteMouvement&action=delete&num_Mouv=<?= $mouv['num_Mouv'] ?>">
                     Delete
                 </a>
+
+                <!-- ⭐ Nouveau bouton pour l'équipage -->
+                <a class="btn btn-update"
+                   href="index.php?uc=gererEquipage&action=voirEquipage&num_Mouv=<?= $mouv['num_Mouv'] ?>">
+                    Gérer l'équipage
+                </a>
             </td>
         </tr>
         <?php endforeach; ?>
     </table>
 
 </div>
+</body>
+</html>

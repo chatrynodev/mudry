@@ -14,7 +14,7 @@ class RoleModel {
         return htmlspecialchars(trim($v),ENT_QUOTES,'UTF-8');
     }
 
-    public function getAll(){
+    public function getAllRole(){
         try{
             $sql = "SELECT * FROM role ORDER BY libelle_Role ASC";
             $stmt = $this->pdo->prepare($sql);

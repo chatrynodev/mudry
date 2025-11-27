@@ -1,7 +1,4 @@
 <?php
-
-require_once dirname(__DIR__) . '/Models/class.pdoMudry.inc.php';
-
 class ModeleModel
 {
     private $pdo;

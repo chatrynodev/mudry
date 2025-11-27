@@ -95,6 +95,6 @@ switch ($action) {
                 include dirname(__DIR__) . '/Views/v_addAeroport.php';
             }
         }
-
-        break;
+        header("Location: index.php?uc=voirAeroport&action=liste");
+        exit;
 }

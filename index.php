@@ -46,8 +46,8 @@ switch($uc)
         include("Controllers/c_suppressionModele.php");
         break;
     }
-    case 'cAeroport': {
-        include("Views/v_creerAeroport.php");
+    case 'voirAeroport': {
+        include "Controllers/c_voirAeroport.php";
         break;
     }
     case 'creerAeroport': {
@@ -60,10 +60,6 @@ switch($uc)
     }
     case 'deleteAeroport': {
         include("Controllers/c_deleteAeroport.php");
-        break;
-    }
-    case 'voirAeroport': {
-        include "Controllers/c_voirAeroport.php";
         break;
     }
     case 'voirMouvement' : {

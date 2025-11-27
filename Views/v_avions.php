@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Liste des Avions</title>
-    <link rel="stylesheet" href="/Models/css/gestion.css">
+    <link rel="stylesheet" href="Models/css/gestion.css">
 </head>
 
 <body>

@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Modifier un Avion</title>
-    <link rel="stylesheet" href="/mudry/Models/css/gestion.css">
+    <link rel="stylesheet" href="Models/css/gestion.css">
     <script>
         function toggleQuantityInput(checkbox) {
             const quantityInput = checkbox.parentElement.querySelector('input[type="number"]');

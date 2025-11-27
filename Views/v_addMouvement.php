@@ -7,7 +7,7 @@
 
 <div class="mouvement-container">
 
-<form method="POST" action="index.php?uc=gererEquipage&action=confirmAdd">
+<form method="POST" action="index.php?uc=addMouvement&action=confirmAdd">
 
     <label>Numéro de vol :</label>
     <input type="text" name="num_Vol" required><br>
@@ -59,9 +59,8 @@
             </option>
         <?php endforeach; ?>
     </select><br>
-    <button type="submit" class="btn btn-add" onclick="validateAeroports()">Ajouter</button>
+    <button type="submit" class="btn btn-add">Ajouter</button>
 
 </form>
 
 </div>
-<script src="/mudry/Models/js/script_aeroportMouv.js"></script>

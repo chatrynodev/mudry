@@ -12,6 +12,25 @@
    <?php include("includes/navbar.php"); ?>      
 </header>
 <h2>Liste des mouvements</h2>
+<?php
+// Affichage des messages de statut
+if (isset($_GET['status'])) {
+    $status = $_GET['status'];
+    $message = $_GET['message'] ?? '';
+
+    if ($status === 'success') {
+        if ($message === 'add_ok') {
+            echo '<div class="alert success">Mouvement ajouté avec succès.</div>';
+        }
+    } elseif ($status === 'error') {
+        if ($message === 'add_failDepart') {
+            echo '<div class="alert error">Erreur : La date de départ est invalide.</div>';
+        } elseif ($message === 'add_failDates') {
+            echo '<div class="alert error">Erreur : La date d\'arrivée doit être après la date de départ.</div>';
+        }
+    }
+}
+?>
 
 <div class="mouvement-container">
 

@@ -1,5 +1,5 @@
 <?php
-
+//nom du fichier : class.pdoMudry.inc.php
 class PdoMudry {
 
     private static $instance = null;
@@ -9,11 +9,19 @@ class PdoMudry {
        Constructeur privé → empêche toute instanciation externe
        ---------------------------------------------------------- */
     private function __construct() {
+        if ($_SERVER['SERVER_NAME'] == 'localhost' or $_SERVER['SERVER_NAME'] == '127.0.0.1'){
+            $host    = "localhost";  
+            $dbname  = "mudry";   // adapte selon ton nom de base
+            $user    = "root";
+            $pass    = "";
 
-        $host    = "localhost";
-        $dbname  = "mudry";   // adapte selon ton nom de base
-        $user    = "root";
-        $pass    = "";
+        }else{
+            $host    = "db672809001.db.1and1.com";  
+            $dbname  = "db672809001";   // adapte selon ton nom de base
+            $user    = "dbo672809001";
+            $pass    = "\$siQU3N9Lp2SiJKRX^";
+        }
+
         $charset = "utf8mb4";
 
         $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
@@ -29,7 +37,7 @@ class PdoMudry {
         }
         catch (Exception $e) {
 
-            // Aucune fuite d'information sensible
+            // 🔐 Aucune fuite d'information sensible
             error_log("Erreur PDO Mudry : " . $e->getMessage());
 
             die("Une erreur interne est survenue.");

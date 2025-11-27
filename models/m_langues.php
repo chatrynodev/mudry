@@ -4,15 +4,16 @@ class LanguesModel {
 
     private $pdo;
 
-    public function __construct(PDO $pdo){
-        $this->pdo=$pdo;
+    public function __construct()
+    {
+        $this->pdo = PdoMudry::getPdoMudry()->getConnexion();
     }
 
     private function cleanString($v){
         return htmlspecialchars(trim($v),ENT_QUOTES,'UTF-8');
     }
 
-    public function getAll(){
+    public function getAllLangues(){
         try{
             $sql="SELECT * FROM langues ORDER BY libelle_Langue ASC";
             $stmt=$this->pdo->prepare($sql);
@@ -22,7 +23,7 @@ class LanguesModel {
         }catch(Exception $e){ return ["error"=>"Erreur interne."]; }
     }
 
-    public function insert($libelle){
+    public function insertLangues($libelle){
         try{
             $libelle=$this->cleanString($libelle);
 

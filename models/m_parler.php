@@ -1,0 +1,34 @@
+<?php
+
+class ParlerModel {
+
+    private $pdo;
+
+    public function __construct(PDO $pdo){
+        $this->pdo=$pdo;
+    }
+
+    public function insert($idEmployer,$idLangue){
+        try{
+            $idEmployer=(int)$idEmployer;
+            $idLangue=(int)$idLangue;
+
+            $sql="INSERT INTO parler (id_Employer,id_Langue) VALUES (?,?)";
+            $stmt=$this->pdo->prepare($sql);
+            return $stmt->execute([$idEmployer,$idLangue]);
+
+        }catch(Exception $e){ return ["error"=>"Erreur interne."]; }
+    }
+
+    public function delete($idEmployer,$idLangue){
+        try{
+            $idEmployer=(int)$idEmployer;
+            $idLangue=(int)$idLangue;
+
+            $sql="DELETE FROM parler WHERE id_Employer=? AND id_Langue=?";
+            $stmt=$this->pdo->prepare($sql);
+            return $stmt->execute([$idEmployer,$idLangue]);
+
+        }catch(Exception $e){ return ["error"=>"Erreur interne."]; }
+    }
+}

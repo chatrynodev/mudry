@@ -14,15 +14,36 @@ switch($uc)
         include("Views/v_Accueil.php");
         break;
     }
+    case 'voirAvion': {
+        include("Controllers/c_voirAvions.php");
+        break;
+    }
     case 'creerAvion': {
         include("Controllers/c_creationAvion.php");
         break;
     }
     case 'modifierAvion': {
         include("Controllers/c_modifierAvion.php");
-        break;    }
+        break;
+    }
     case 'supprimerAvion': {
         include("Controllers/c_suppressionAvion.php");
+        break;
+    }
+    case 'voirModele': {
+        include("Controllers/c_voirModele.php");
+        break;
+    }
+    case 'creerModele': {
+        include("Controllers/c_creationModele.php");
+        break;
+    }
+    case 'modifierModele': {
+        include("Controllers/c_modifierModele.php");
+        break;
+    }
+    case 'supprimerModele': {
+        include("Controllers/c_suppressionModele.php");
         break;
     }
     case 'cAeroport': {

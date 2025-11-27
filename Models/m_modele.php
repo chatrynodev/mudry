@@ -5,7 +5,7 @@ class ModeleModel
 
     public function __construct()
     {
-        // ✔ On récupère l’instance — puis la connexion PDO
+        // On récupère l’instance PDO
         $this->pdo = PdoMudry::getPdoMudry()->getConnexion();
     }
 
@@ -25,16 +25,15 @@ class ModeleModel
 
     public function getModeleById($id)
     {
-        $sql = "SELECT * FROM Modele WHERE id_Modele = ?";
+        // 🟢 Correction IONOS : table en minuscules
+        $sql = "SELECT * FROM modele WHERE id_Modele = ?";
         $req = $this->pdo->prepare($sql);
         $req->execute([$id]);
         return $req->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
-     * Retourne la liste des roles (libelle_Role) associés à un modèle via la table assigner.
-     * @param int $id_Modele
-     * @return array Liste d'éléments ['id_Role' => ..., 'libelle_Role' => ..., 'nbMin_Role' => ...]
+     * Retourne les rôles associés à un modèle.
      */
     public function getRoleForModele($id_Modele)
     {
@@ -104,9 +103,10 @@ class ModeleModel
         ]);
     }
 
-    public function supprimerModele($id_Modele) {
-        $sql = 'DELETE FROM modele
-                WHERE id_Modele = :id_Modele';
+    public function supprimerModele($id_Modele)
+    {
+        // 🟢 Correction IONOS : table en minuscules
+        $sql = 'DELETE FROM modele WHERE id_Modele = :id_Modele';
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             ':id_Modele' => $id_Modele

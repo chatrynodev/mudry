@@ -7,6 +7,8 @@ require_once dirname(__DIR__) . '/Models/f_verifTypeEmployer.php';
 
 $action = $_REQUEST['action'] ?? 'confirmer';
 
+$modelEmployer = new ModelEmployer();
+
 switch ($action) {
 
     // ------------------------------------------------
@@ -15,24 +17,10 @@ switch ($action) {
     case 'supprimer': {
 
         if (!isset($_GET['id_Employer'])) {
-            die("ID manquant dans l’URL.");
+            die("ID manquant dans l'URL.");
         }
 
         $id = (int) $_GET['id_Employer'];
-        $type = verifierTypeEmployer($pdo, $id);
-
-        if ($type = verifierTypeEmployer((new ModelEmployer())->getPdo(), $id)) {
-            // Supprimer les entrées associées dans les tables spécifiques
-            if ($type === "technicien") {
-                $modelTech = new ModelTechnicien();
-                $modelTech->supprimerTechnicien($id);
-            } elseif ($type === "commercial") {
-                $modelCom = new ModelCommercial();
-                $modelCom->supprimerCommercial($id);
-            }
-        }
-
-        $modelEmployer = new ModelEmployer();
         $employer = $modelEmployer->getEmployerById($id);
 
         if (!$employer) {
@@ -54,7 +42,21 @@ switch ($action) {
 
         $id = (int) $_POST['id'];
 
-        $modelEmployer = new ModelEmployer();
+        // Récupérer la connexion PDO (pas l'objet PdoMudry)
+        $pdo = PdoMudry::getPdoMudry()->getConnexion();
+
+        // Récupérer le type d'employé avant suppression
+        $type = verifierTypeEmployer($pdo, $id);
+
+        if ($type === "technicien") {
+            $modelTech = new TechnicienModel();
+            $modelTech->supprimerTechnicien($id);
+        } elseif ($type === "commercial") {
+            $modelCom = new CommercialModel();
+            $modelCom->supprimerCommercial($id);
+        }
+
+        // Supprimer l'employé
         $ok = $modelEmployer->supprimerEmployer($id);
 
         if (!$ok) {

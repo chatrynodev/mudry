@@ -21,6 +21,17 @@ class TechnicienModel {
         }catch(Exception $e){ return ["error"=>"Erreur interne."]; }
     }
 
+    public function supprimerTechnicien($idEmployer){
+        try{
+            $idEmployer=(int)$idEmployer;
+
+            $sql="DELETE FROM technicien WHERE id_Employer=?";
+            $stmt=$this->pdo->prepare($sql);
+            return $stmt->execute([$idEmployer]);
+
+        }catch(Exception $e){ return ["error"=>"Erreur interne."]; }
+    }
+
     public function getNbHeuresTechnicienById($idEmployer){
         try{
             $sql="SELECT nbHeureVol_Technicien FROM technicien WHERE id_Employer=?";

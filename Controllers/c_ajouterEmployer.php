@@ -42,7 +42,7 @@ switch ($action)
 
 
         if ($_POST['role'] === 'commercial') {
-            $modelCommercial->insertCommercial(
+            $modelCommercial->ajouterCommercial(
                 $id
             );
             foreach ($_POST['langues'] as $idlangue) {

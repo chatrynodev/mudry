@@ -1,5 +1,5 @@
 <?php
-include("includes/model.inc.php");
+require_once("includes/model.inc.php");
 
 if(!isset($_REQUEST['uc'])) 
     $uc = 'accueil';
@@ -90,8 +90,12 @@ switch($uc)
         include("Controllers/c_gestionEmployer.php");
         break; 
     }
-    	case 'gererEquipage' : { 
+    case 'gererEquipage' : { 
         include("Controllers/c_gestionEquipage.php");
         break; 
+    }
+    default: {
+        echo "UC inexistant !";
+        break;
     }
 }

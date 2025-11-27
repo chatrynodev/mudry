@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mudry</title>
-    <link rel="stylesheet" href="/mudry/Models/css/style.css">
+    <link rel="stylesheet" href="/Models/css/style.css">
 </head>
 
 <body>
@@ -14,7 +14,7 @@
         <?php include("includes/navbar.php"); ?>
         
         <h1>MUDRY</h1>
-        <img src="/mudry/Models/images/avion fond accueil.png" class="header-img" alt="">
+        <img src="/Models/images/avion fond accueil.png" class="header-img" alt="">
     </header>
 
     <!-- PRESENTATION -->

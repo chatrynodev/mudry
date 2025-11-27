@@ -30,6 +30,7 @@
     </script>
 </head>
 
+<body>
 <header>
    <?php include("includes/navbar.php"); ?>      
 </header>
@@ -75,3 +76,5 @@
 </form>
 
 </div>
+</body>
+</html>

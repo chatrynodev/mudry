@@ -10,7 +10,7 @@ $action = $_REQUEST['action'];
 
 switch ($action) 
 {
-    case 'creerAvion':
+    case 'formAdd':
         include dirname(__DIR__) . '/Views/v_creationAvion.php';
         break;
 

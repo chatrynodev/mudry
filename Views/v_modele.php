@@ -38,7 +38,7 @@
 
                         <td class="mouvement-actions">
                             <a class="btn btn-delete"
-                                href="index.php?uc=supprimerModele&id_Modele=<?php echo $unModele['id_Modele'] ?>">Supprimer</a></td>
+                                href="index.php?uc=supprimerModele&action=delete&id_Modele=<?php echo $unModele['id_Modele'] ?>">Supprimer</a></td>
                 </tr>
                 <?php
             }

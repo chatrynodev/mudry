@@ -7,7 +7,7 @@ $action = $_REQUEST['action'] ?? '';
 
 switch ($action) {
 
-    case '':
+    case 'delete':
         $id_Modele = isset($_GET['id_Modele']) ? intval($_GET['id_Modele']) : null;
         $unModele = $modeleModele->getModeleById($id_Modele);
         // Récupérer les rôles assignés pour les afficher

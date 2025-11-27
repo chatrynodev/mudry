@@ -27,16 +27,9 @@
     <input type="number" name="tel_Employer" value="<?= $employer['tel_Employer'] ?>"><br>
 
     <!-- MENU DÉROULANT QUALIFICATION EMPLOYE -->
-    <label for="">Sélectionner le type d'employé : </label><br>
-    <label>
-        <input type="radio" name="role" value="technicien" <?= $role === 'technicien' ? 'checked' : '' ?>>
-        Technicien
-    </label><br>
+    <label for="">Type d'employé : </label>
+    <input type="text" name="role" value="<?= $role ?>" disabled><br>
 
-    <label>
-        <input type="radio" name="role" value="commercial" <?= $role === 'commercial' ? 'checked' : '' ?>>
-        Commercial
-    </label><br>
 
     <?php if ($role === 'technicien'): ?>
         <!-- CHAMPS SUPPLÉMENTAIRE POUR TECHNICIEN -->
@@ -63,8 +56,9 @@
         <br>
     <?php endif; ?>
 
-    
-    <button type="submit" class="btn btn-add">Ajouter</button>
+    <input type="hidden" name="id_Employer" value="<?= $employer['id_Employer'] ?>">
+
+    <button type="submit" class="btn btn-add">Modifier</button>
 
 </form>
 

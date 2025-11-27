@@ -4,7 +4,7 @@ require_once dirname(__DIR__) . '/Models/m_langues.php';
 require_once dirname(__DIR__) . '/Models/m_parler.php';
 require_once dirname(__DIR__) . '/Models/m_commercial.php';
 require_once dirname(__DIR__) . '/Models/m_technicien.php';
-require_once dirname(__DIR__) . '/Models/f_verifTypeEmployer.php';
+require_once dirname(__DIR__) . '/Fonctions/f_verifTypeEmployer.php';
 
 $modelEmployer = new ModelEmployer();
 $modelLangues = new LanguesModel();
@@ -33,27 +33,24 @@ switch ($action)
         break;
 
     case 'confirmUpdateEmployer': // Confirmation de l'ajout d'un technicien
-        $modelEmployer->ajouterEmployer(
-            $_POST['tel_Employer'],
-            $_POST['nom_Employer'],
-            $_POST['prenom_Employer']
-        );
+        $id = (int) $_POST['id_Employer'];
 
-        $id = $modelEmployer->getLastInsertedId();
+        $modelEmployer->modifierEmployer(
+                $id,
+                $_POST['tel_Employer'],
+                $_POST['nom_Employer'],
+                $_POST['prenom_Employer'],
+            );
 
         if ($_POST['role'] === 'technicien') {
-            $modelTechnicien->ajouterTechnicien(
+            $modelTechnicien->modifierTechnicien(
                 $id,
                 $_POST['nb_Heures']
             );
         }
-        
-
 
         if ($_POST['role'] === 'commercial') {
-            $modelCommercial->insertCommercial(
-                $id
-            );
+            $modelParler->supprimerParlerByCommercialId($id);
             foreach ($_POST['langues'] as $idlangue) {
                 $modelParler->insertParler(
                     $id,

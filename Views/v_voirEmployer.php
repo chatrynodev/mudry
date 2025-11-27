@@ -13,8 +13,14 @@
 </header>
 <h2>Liste des employés</h2>
 
-<div class="employer-container">
+<?php
+    if (isset($_SESSION['message'])){
+        echo "<div class='message'><p>" . htmlspecialchars($_SESSION['message']) . "</p></div>";
+        unset($_SESSION['message']);
+    }
+?>
 
+<div class="employer-container">
     <div class="employer-header">
         <span>Liste des employés enregistrés</span>
         <a class="btn btn-add" href="index.php?uc=ajouterEmployer&action=formAdd">

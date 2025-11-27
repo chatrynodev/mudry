@@ -97,4 +97,24 @@ class ModelEmployer {
             return false;
         }
     }
+
+    public function getEmployeExistInEquipage($id) {
+        try {
+            $id = (int)$id;
+
+            $sql = "SELECT COUNT(*) AS count FROM equipage WHERE id_Employer = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$id]);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($result['count'] > 0) {
+                return true; // L'employé existe dans equipage
+            } else {
+                return false; // L'employé n'existe pas dans equipage
+            }
+
+        } catch (Exception $e) {
+            return ["error" => "Erreur interne."];
+        }
+    }
 }

@@ -3,7 +3,8 @@
 require_once dirname(__DIR__) . '/Models/m_employer.php';
 require_once dirname(__DIR__) . '/Models/m_technicien.php';
 require_once dirname(__DIR__) . '/Models/m_commercial.php';
-require_once dirname(__DIR__) . '/Models/f_verifTypeEmployer.php';
+require_once dirname(__DIR__) . '/Models/m_parler.php';
+require_once dirname(__DIR__) . '/Fonctions/f_verifTypeEmployer.php';
 
 $action = $_REQUEST['action'] ?? 'confirmer';
 
@@ -45,6 +46,13 @@ switch ($action) {
         // Récupérer la connexion PDO (pas l'objet PdoMudry)
         $pdo = PdoMudry::getPdoMudry()->getConnexion();
 
+
+        if ($modelEmployer->getEmployeExistInEquipage($id)) {
+            $_SESSION['message'] = "Suppression impossible : l'employé est affecté à un équipage.";
+            header("Location: index.php?uc=voirEmployer&action=liste");
+            exit;
+        }
+
         // Récupérer le type d'employé avant suppression
         $type = verifierTypeEmployer($pdo, $id);
 
@@ -53,6 +61,8 @@ switch ($action) {
             $modelTech->supprimerTechnicien($id);
         } elseif ($type === "commercial") {
             $modelCom = new CommercialModel();
+            $modelParler = new ParlerModel();
+            $modelParler->supprimerParlerByCommercialId($id);
             $modelCom->supprimerCommercial($id);
         }
 

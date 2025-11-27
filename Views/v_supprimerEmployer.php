@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Supprimer un employé</title>
-    <link rel="stylesheet" href="/mudry/Models/css/gestion.css">
+    <link rel="stylesheet" href="Models/css/gestion.css">
 </head>
 <body>
 <header>
@@ -35,7 +35,7 @@
     <p>Voulez-vous vraiment supprimer cet employé ?</p>
 
     <button type="submit">Oui</button>
-    <button href="index.php?uc=voirEmployer&action=liste">Non</button>
+    <button><a style="text-decoration: none; color: black;" href="index.php?uc=voirEmployer&action=liste">Annuler</a></button>
 </form>
 
 </body>

@@ -21,14 +21,13 @@ class ParlerModel {
         }catch(Exception $e){ return ["error"=>"Erreur interne."]; }
     }
 
-    public function deleteParler($idEmployer,$idLangue){
+    public function supprimerParlerByCommercialId($idEmployer){
         try{
             $idEmployer=(int)$idEmployer;
-            $idLangue=(int)$idLangue;
 
-            $sql="DELETE FROM parler WHERE id_Employer=? AND id_Langue=?";
+            $sql="DELETE FROM parler WHERE id_Employer=?";
             $stmt=$this->pdo->prepare($sql);
-            return $stmt->execute([$idEmployer,$idLangue]);
+            return $stmt->execute([$idEmployer]);
 
         }catch(Exception $e){ return ["error"=>"Erreur interne."]; }
     }

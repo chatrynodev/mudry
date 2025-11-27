@@ -4,17 +4,15 @@ class RoleModel {
 
     private $pdo;
 
-    public function __construct()
-    {
-        // ✔ On récupère l’instance — puis la connexion PDO
-        $this->pdo = PdoMudry::getPdoMudry()->getConnexion();
+    public function __construct(PDO $pdo){
+        $this->pdo = $pdo;
     }
 
     private function cleanString($v){
         return htmlspecialchars(trim($v),ENT_QUOTES,'UTF-8');
     }
 
-    public function getAllRole(){
+    public function getAll(){
         try{
             $sql = "SELECT * FROM role ORDER BY libelle_Role ASC";
             $stmt = $this->pdo->prepare($sql);

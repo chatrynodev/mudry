@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+// Vérification si je suis connecté ou non
+if (!empty($_SESSION['isConnected'])) {
+    $isConnected = true;
+} else {
+    $isConnected = false;
+}
+
 require_once("includes/model.inc.php");
 
 if(!isset($_REQUEST['uc'])) 
@@ -6,6 +15,10 @@ if(!isset($_REQUEST['uc']))
 else 
     $uc = $_REQUEST['uc'];
 
+//redirection si non connecté
+if ($isConnected === false) {
+    $uc = 'connexion';
+}
 
 $pdo = PdoMudry::getPdoMudry();
 switch($uc) 
@@ -30,6 +43,28 @@ switch($uc)
         include("Controllers/c_suppressionAvion.php");
         break;
     }
+    case 'voirEmployer' : {
+        include("Controllers/c_voirEmployer.php");
+        break;
+    }
+    case 'ajouterEmployer' : {
+        include("Controllers/c_ajouterEmployer.php");
+        break;
+    }
+    case 'supprimerEmployer' : {
+        include("Controllers/c_supprimerEmployer.php");
+        break;
+    }
+    case 'modifierEmployer' : {
+        include("Controllers/c_modifierEmployer.php");
+        break;
+    }
+    case 'connexion': {
+        include("connexion.php");
+        break;
+    }
+    case 'deconnexion': {
+        include("deconnexion.php");
     case 'voirModele': {
         include("Controllers/c_voirModele.php");
         break;

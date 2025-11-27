@@ -1,12 +1,11 @@
 <?php
 
-class EmployerModel {
+class ModelEmployer {
 
     private $pdo;
 
- public function __construct()
+    public function __construct()
     {
-        // ✔ On récupère l’instance — puis la connexion PDO
         $this->pdo = PdoMudry::getPdoMudry()->getConnexion();
     }
 
@@ -25,8 +24,25 @@ class EmployerModel {
             return ["error" => "Erreur interne."];
         }
     }
+    /* ------------------------------
+       Récupérer un Employé par ID
+       ------------------------------ */
+    public function getEmployerById($id) {
+        try {
+            $id = (int)$id;
 
-    public function insertEmployer($tel, $nom, $prenom) {
+            $sql = "SELECT * FROM employer WHERE id_Employer = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$id]);
+
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+
+        } catch (Exception $e) {
+            return ["error" => "Erreur interne lors de la récupération d’un employer."];
+        }
+    }
+
+    public function ajouterEmployer($tel, $nom, $prenom) {
         try {
             $tel = (int)$tel;
             $nom = $this->cleanString($nom);
@@ -42,7 +58,7 @@ class EmployerModel {
         }
     }
 
-    public function updateEmployer($id, $tel, $nom, $prenom) {
+    public function modifierEmployer($id, $tel, $nom, $prenom) {
         try {
             $id = (int)$id;
             $tel = (int)$tel;
@@ -60,13 +76,42 @@ class EmployerModel {
         }
     }
 
-    public function deleteEmployer($id) {
+    public function supprimerEmployer($id) {
         try {
             $id = (int)$id;
 
             $sql = "DELETE FROM employer WHERE id_Employer = ?";
             $stmt = $this->pdo->prepare($sql);
             return $stmt->execute([$id]);
+
+        } catch (Exception $e) {
+            return ["error" => "Erreur interne."];
+        }
+    }
+
+    // Retourne l'ID inséré en dernier par la connexion PDO
+    public function getLastInsertedId() {
+        try {
+            return $this->pdo->lastInsertId();
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    public function getEmployeExistInEquipage($id) {
+        try {
+            $id = (int)$id;
+
+            $sql = "SELECT COUNT(*) AS count FROM equipage WHERE id_Employer = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$id]);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($result['count'] > 0) {
+                return true; // L'employé existe dans equipage
+            } else {
+                return false; // L'employé n'existe pas dans equipage
+            }
 
         } catch (Exception $e) {
             return ["error" => "Erreur interne."];

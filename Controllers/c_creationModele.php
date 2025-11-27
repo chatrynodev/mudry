@@ -23,6 +23,13 @@ switch ($action)
             break;
         }
 
+        // Validation : au moins un rôle doit être sélectionné
+        if (empty($selectedRoles)) {
+            $erreur = "Vous devez sélectionner au moins un rôle pour créer un modèle.";
+            include dirname(__DIR__) . '/Views/v_creationModele.php';
+            break;
+        }
+
         $idModele = $modeleModel->creerModele($libelle, $nb);
         if (!empty($selectedRoles)) {
             // Récupérer les quantités pour chaque rôle sélectionné
@@ -36,12 +43,6 @@ switch ($action)
             if (!empty($rolesAvecQte)) {
                 $modeleModel->assignRolesToModele($idModele, $rolesAvecQte);
             }
-        }
-        else 
-        {
-            // Aucun rôle sélectionné, s'assurer que rien n'est assigné
-            header("Location: index.php?uc=voirModele&action=liste");
-            exit;
         }
 
         header("Location: index.php?uc=voirModele&action=liste");

@@ -24,8 +24,17 @@
         <input type="text" name="codeInterne_Avion" value="<?= htmlspecialchars($avion['codeInterne_Avion']) ?>">
     </p>
 
-    <label>Modèle :</label><br>
-        <input type="text" name="id_Modele" value="<?= htmlspecialchars($avion['id_Modele']) ?>">
+    <p>
+        <label>Modèle :</label><br>
+        <select name="id_Modele" required>
+            <option value="">-- Sélectionner un modèle --</option>
+            <?php if (isset($lesModeles)) { foreach ($lesModeles as $modele): ?>
+                <option value="<?= $modele['id_Modele'] ?>" 
+                    <?= $modele['id_Modele'] == $avion['id_Modele'] ? 'selected' : '' ?>>
+                    <?= $modele['id_Modele'] ?> — <?= htmlspecialchars($modele['libelle_Modele']) ?>
+                </option>
+            <?php endforeach; } ?>
+        </select>
     </p>
 
     <p>

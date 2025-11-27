@@ -15,6 +15,18 @@
                 quantityInput.value = '';
             }
         }
+
+        function validateForm(event) {
+            const checkboxes = document.querySelectorAll('input[name="id_Role[]"]');
+            const isAnyChecked = Array.from(checkboxes).some(cb => cb.checked);
+            
+            if (!isAnyChecked) {
+                event.preventDefault();
+                alert('Vous devez sélectionner au moins un rôle pour créer un modèle.');
+                return false;
+            }
+            return true;
+        }
     </script>
 </head>
 
@@ -26,7 +38,14 @@
 
 <div class="mouvement-container">
 
-<form method="POST" action="index.php?uc=creerModele&action=confirmAdd">
+<!-- Afficher le message d'erreur s'il existe -->
+<?php if (isset($erreur) && !empty($erreur)): ?>
+    <div style="color: red; font-weight: bold; margin-bottom: 20px; padding: 10px; border: 1px solid red; background-color: #ffe6e6;">
+        ⚠️ <?= htmlspecialchars($erreur) ?>
+    </div>
+<?php endif; ?>
+
+<form method="POST" action="index.php?uc=creerModele&action=confirmAdd" onsubmit="return validateForm(event)">
 
     <label>Nom du modèle :</label>
     <input type="text" name="libelle_Modele" required><br>

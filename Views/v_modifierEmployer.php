@@ -28,7 +28,7 @@
 
     <!-- MENU DÉROULANT QUALIFICATION EMPLOYE -->
     <label for="">Type d'employé : </label>
-    <input type="text" name="role" value="<?= $role ?>" disabled><br>
+    <input type="text" value="<?= $role ?>" disabled><br>
 
 
     <?php if ($role === 'technicien'): ?>
@@ -57,6 +57,7 @@
     <?php endif; ?>
 
     <input type="hidden" name="id_Employer" value="<?= $employer['id_Employer'] ?>">
+    <input type="hidden" name="role" value="<?= $role ?>">
 
     <button type="submit" class="btn btn-add">Modifier</button>
 

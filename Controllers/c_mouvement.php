@@ -1,7 +1,5 @@
 <?php
 $action = $_REQUEST['action'];
-
-require_once dirname(__DIR__) . '/Models/m_mouvement.php';
 $modeleMouv = new MouvementModel();
 
 switch ($action)

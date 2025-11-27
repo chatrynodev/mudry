@@ -1,7 +1,5 @@
 <?php
 // contrôleur : c_creerAeroport.php
-require_once dirname(__DIR__) . '/Models/m_aeroport.php';
-
 
 if (!isset($_REQUEST['action'])) {
     $action = 'saisirAeroport';

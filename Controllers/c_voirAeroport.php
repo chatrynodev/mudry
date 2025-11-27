@@ -1,8 +1,6 @@
 <?php
 // contrôleur : c_voirAeroport.php
 
-require_once dirname(__DIR__) . '/Models/m_aeroport.php';
-
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : 'liste';
 
 switch ($action) {

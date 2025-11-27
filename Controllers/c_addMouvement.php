@@ -1,7 +1,4 @@
 <?php
-require_once dirname(__DIR__) . '/Models/m_mouvement.php';
-require_once dirname(__DIR__) . '/Models/m_avion.php';
-require_once dirname(__DIR__) . '/Models/m_aeroport.php';
 include_once dirname(__DIR__) . '/Fonctions/f_dateMouv_verify.php';
 
 

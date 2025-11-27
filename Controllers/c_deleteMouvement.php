@@ -1,5 +1,4 @@
 <?php
-require_once dirname(__DIR__) . '/Models/m_mouvement.php';
 $modeleMouv = new MouvementModel();
 
 $action = $_REQUEST['action'];

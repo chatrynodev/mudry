@@ -1,8 +1,6 @@
 <?php
 // c_supprimerAeroport.php — version sécurisée
 
-require_once dirname(__DIR__) . '/Models/m_aeroport.php';
-
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : 'confirmer';
 
 switch ($action) {

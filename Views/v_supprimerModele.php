@@ -13,13 +13,18 @@
 <p>Libellé du modèle : <?= htmlspecialchars($unModele['libelle_Modele'] ?? '') ?></p>
 <p>Nombre de sièges maximum : <?= htmlspecialchars($unModele['nbSiegeMax_Modele'] ?? '') ?></p>
 
-<!-- Afficher les rôles assignés -->
+<!-- Afficher les rôles assignés avec quantités -->
 <?php if (!isset($rolesAssignes) || !is_array($rolesAssignes)) $rolesAssignes = []; ?>
 <h3>Rôles assignés</h3>
 <?php if (!empty($rolesAssignes)): ?>
     <ul>
         <?php foreach ($rolesAssignes as $r): ?>
-            <li><?= htmlspecialchars($r['libelle_Role']) ?></li>
+            <li>
+                <?= htmlspecialchars($r['libelle_Role']) ?>
+                <?php if (isset($r['nbMin_Role']) && !empty($r['nbMin_Role'])): ?>
+                    : <?= htmlspecialchars($r['nbMin_Role']) ?>
+                <?php endif; ?>
+            </li>
         <?php endforeach; ?>
     </ul>
 <?php else: ?>

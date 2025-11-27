@@ -2,6 +2,20 @@
     <meta charset="UTF-8">
     <title>Modifier un Avion</title>
     <link rel="stylesheet" href="/mudry/Models/css/gestion.css">
+    <script>
+        function toggleQuantityInput(checkbox) {
+            const quantityInput = checkbox.parentElement.querySelector('input[type="number"]');
+            if (checkbox.checked) {
+                quantityInput.disabled = false;
+                if (quantityInput.value === '') {
+                    quantityInput.value = '1';
+                }
+            } else {
+                quantityInput.disabled = true;
+                quantityInput.value = '';
+            }
+        }
+    </script>
 </head>
 
 <header>
@@ -21,14 +35,19 @@
     <input type="number" name="nbSiegeMax_Modele" required><br>
 
     <!-- MENU DÉROULANT DES ROLES -->
-    <label>Assigner des rôles :</label>
+    <label>Assigner des rôles (quantité) :</label>
     <?php if (!isset($lesRoles)) $lesRoles = []; ?>
     <div class="roles-list">
         <?php foreach ($lesRoles as $role): ?>
-            <label style="display:block; margin-bottom:4px;">
-                <input type="checkbox" name="id_Role[]" value="<?= htmlspecialchars($role['id_Role']) ?>">
-                <?= htmlspecialchars($role['libelle_Role']) ?>
-            </label>
+            <div>
+                <label style="display:block; margin-bottom:4px;">
+                    <input type="checkbox" name="id_Role[]" value="<?= htmlspecialchars($role['id_Role']) ?>" 
+                        onchange="toggleQuantityInput(this)">
+                    <?= htmlspecialchars($role['libelle_Role']) ?>
+                    <input type="number" name="qte[<?= htmlspecialchars($role['id_Role']) ?>]" min="1" disabled>
+                </label>
+            </div>
+            
         <?php endforeach; ?>
     </div><br>
 

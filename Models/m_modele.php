@@ -37,7 +37,7 @@ class ModeleModel
     /**
      * Retourne la liste des roles (libelle_Role) associés à un modèle via la table assigner.
      * @param int $id_Modele
-     * @return array Liste d'éléments ['id_Role' => ..., 'libelle_Role' => ...]
+     * @return array Liste d'éléments ['id_Role' => ..., 'libelle_Role' => ..., 'nbMin_Role' => ...]
      */
     public function getRoleForModele($id_Modele)
     {
@@ -46,7 +46,7 @@ class ModeleModel
             return [];
         }
 
-        $sql = "SELECT r.id_Role, r.libelle_Role
+        $sql = "SELECT r.id_Role, r.libelle_Role, a.nbMin_Role
                 FROM role r
                 INNER JOIN assigner a ON a.id_Role = r.id_Role
                 WHERE a.id_Modele = ?
@@ -68,10 +68,12 @@ class ModeleModel
     }
 
     /**
-     * Assigne un ou plusieurs roles à un modèle.
+     * Assigne un ou plusieurs roles à un modèle avec leurs quantités.
      * Remplace les assignations existantes pour éviter les doublons.
+     * @param int $id_Modele
+     * @param array $rolesAvecQte Format: ['id_role' => quantite, ...]
      */
-    public function assignRolesToModele($id_Modele, array $roles) {
+    public function assignRolesToModele($id_Modele, $rolesAvecQte) {
         if (empty($id_Modele)) return;
 
         // Supprimer les anciennes assignations
@@ -79,14 +81,15 @@ class ModeleModel
         $stmtDel = $this->pdo->prepare($sqlDel);
         $stmtDel->execute([':id_Modele' => $id_Modele]);
 
-        // Insérer les nouvelles assignations
-        $sqlIns = 'INSERT INTO assigner (id_Modele, id_Role) VALUES (:id_Modele, :id_Role)';
+        // Insérer les nouvelles assignations avec quantités
+        $sqlIns = 'INSERT INTO assigner (id_Modele, id_Role, nbMin_Role) VALUES (:id_Modele, :id_Role, :nbMin_Role)';
         $stmtIns = $this->pdo->prepare($sqlIns);
-        foreach ($roles as $idRole) {
+        foreach ($rolesAvecQte as $idRole => $quantite) {
             if (!is_numeric($idRole)) continue;
             $stmtIns->execute([
                 ':id_Modele' => $id_Modele,
-                ':id_Role' => intval($idRole)
+                ':id_Role' => intval($idRole),
+                ':nbMin_Role' => intval($quantite)
             ]);
         }
     }

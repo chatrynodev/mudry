@@ -22,27 +22,20 @@ switch ($action) {
             exit;
         }
 
-        // Vérifier s'il y a des rôles assignés (ne pas appeler assignRolesToModele ici)
-        $rolesAssignes = $modeleModele->getRoleForModele($id_Modele);
-        if (!empty($rolesAssignes)) {
-            $erreur = "Impossible de supprimer : des rôles sont assignés à ce modèle.";
-            $unModele = $modeleModele->getModeleById($id_Modele);
-            include dirname(__DIR__) . '/Views/v_supprimerModele.php';
-            break;
-        }
-
-        // Vérifier si des avions utilisent ce modèle (ajoute getAvionsByModele() dans m_avion si nécessaire)
+        // Vérifier si des avions utilisent ce modèle
         $avionsUsing = $modeleAvion->getAvionsByModele($id_Modele);
         if (!empty($avionsUsing)) {
             $erreur = "Impossible de supprimer : un ou plusieurs avions utilisent ce modèle.";
             $unModele = $modeleModele->getModeleById($id_Modele);
+            $rolesAssignes = $modeleModele->getRoleForModele($id_Modele);
             include dirname(__DIR__) . '/Views/v_supprimerModele.php';
             break;
         }
 
-        // Si tu veux vider d'abord les assignations au lieu de bloquer la suppression :
-        // $modeleModele->assignRolesToModele($id_Modele, []);
+        // Supprimer d'abord les assignations de rôles
+        $modeleModele->assignRolesToModele($id_Modele, []);
 
+        // Puis supprimer le modèle
         $modeleModele->supprimerModele($id_Modele);
         header("Location: index.php?uc=voirModele&action=liste");
         exit;

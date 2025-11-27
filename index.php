@@ -1,5 +1,5 @@
 <?php
-require_once("Models/m_avion.php");
+include("includes/model.inc.php");
 
 if(!isset($_REQUEST['uc'])) 
     $uc = 'accueil';
@@ -46,24 +46,52 @@ switch($uc)
         include("Controllers/c_suppressionModele.php");
         break;
     }
+    case 'cAeroport': {
+        include("Views/v_creerAeroport.php");
+        break;
+    }
     case 'creerAeroport': {
-        include("Controllers/c_creationAeroport.php");
+        include("Controllers/c_creerAeroport.php");
         break;
     }
     case 'modifierAeroport': {
-        include("Controllers/c_modifierAeroport.php");
+        include("Controllers/c_updateAeroport.php");
         break;
     }
-    case 'supprimerAeroport': {
-        include("Controllers/c_suppressionAeroport.php");
+    case 'deleteAeroport': {
+        include("Controllers/c_deleteAeroport.php");
         break;
     }
-    case 'voirEmployer' : {
+    case 'voirAeroport': {
+        include "Controllers/c_voirAeroport.php";
+        break;
+    }
+    case 'voirMouvement' : {
+        include("Controllers/c_voirMouvement.php");
+        break;
+    }
+    case 'addMouvement' : {
+        include("Controllers/c_addMouvement.php");
+        break;
+    }
+    case 'updateMouvement' : {
+        include("Controllers/c_updateMouvement.php");
+        break;
+    }
+    case 'deleteMouvement' : {
+        include("Controllers/c_deleteMouvement.php");
+        break;
+    }
+	case 'voirEmployer' : {
         include("Controllers/c_voirEmployer.php");
         break;
     }
-    case 'gererEmployer' : { 
+	case 'gererEmployer' : { 
         include("Controllers/c_gestionEmployer.php");
+        break; 
+    }
+    	case 'gererEquipage' : { 
+        include("Controllers/c_gestionEquipage.php");
         break; 
     }
 }

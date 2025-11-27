@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Modifier un Avion</title>
-    <link rel="stylesheet" href="/mudry/Models/css/gestion.css">
+    <title>Modifier un Modèle</title>
+    <link rel="stylesheet" href="/Models/css/gestion.css">
 </head>
 <body>
 <header>

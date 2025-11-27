@@ -1,61 +1,77 @@
 <!doctype html>
-<html>
+<html lang="fr">
 
 <head>
+    <meta charset="UTF-8">
     <title>Liste des Avions</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="/mudry/Models/css/gestion.css">
-
+    <link rel="stylesheet" href="/Models/css/gestion.css">
 </head>
-<body>
-    <form action="index.php?uc=creerAvion&action=creerAvion" method="post">
-        
-        <div class="mouvement-header">
-        <p><h2>Liste des Avions</h2></p>
-        </div>
 
-        <table class="mouvement-table" border=3 cellspacing=1>
+<body>
+
+<header>
+    <?php include("includes/navbar.php"); ?>
+</header>
+
+<h2>Liste des Avions</h2>
+
+<div class="mouvement-container">
+
+    <div class="mouvement-header">
+        <span>Liste des avions enregistrés</span>
+        <a class="btn btn-add" href="index.php?uc=creerAvion&action=formAdd">
+            + Ajouter un avion
+        </a>
+    </div>
+
+    <table class="mouvement-table">
+        <thead>
             <tr>
                 <th>Numéro de Série</th>
                 <th>Code Interne</th>
                 <th>Modèle</th>
                 <th colspan="2">Actions</th>
             </tr>
-            <?php
+        </thead>
 
-                foreach ($lesAvions as $unAvion) 
-                {
-                    $num = $unAvion['numSerie_Avion'];
-                    $code = $unAvion['codeInterne_Avion'];
-                    $modele = $unAvion['id_Modele'];
-            ?>
-                <tr>
-                        <td width=150><?php echo $num ?></td>
-                        <td width=150><?php echo $code ?></td>
-                        <td width=150><?php echo $modele ?></td>
-                    <?php
+        <tbody>
+            <?php foreach ($lesAvions as $unAvion): ?>
+            <tr>
+                <td><?= htmlspecialchars($unAvion['numSerie_Avion']) ?></td>
+                <td><?= htmlspecialchars($unAvion['codeInterne_Avion']) ?></td>
+                <td><?= htmlspecialchars($unAvion['id_Modele']) ?></td>
 
-                    ?>
-                        <td class="mouvement-actions">
-                            <a class="btn btn-update"
-                                href="index.php?uc=modifierAvion&action=modifierAvion&id_Avion=<?php echo $unAvion['id_Avion'] ?>">Modifier</a></td>
+                <td class="mouvement-actions">
+                    <a class="btn btn-update"
+                        href="index.php?uc=modifierAvion&action=modifierAvion&id_Avion=<?= $unAvion['id_Avion'] ?>">
+                        Modifier
+                    </a>
+                </td>
 
-                        <td class="mouvement-actions">
-                            <a class="btn btn-delete"
-                                href="index.php?uc=supprimerAvion&id_Avion=<?php echo $unAvion['id_Avion'] ?>">Supprimer</a></td>
-                </tr>
-                <?php
-            }
-            ?>
-            </table>
-            </br>
+                <td class="mouvement-actions">
+                    <a class="btn btn-delete"
+                        href="index.php?uc=supprimerAvion&id_Avion=<?= $unAvion['id_Avion'] ?>"
+                        onclick="return confirm('Supprimer cet avion ?');">
+                        Supprimer
+                    </a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 
-            <input class="btn" type="submit" value="Créer un nouvel avion">
-    </form>
-        </br>
-   <button type="button" class="btn" onclick="window.location.href='index.php?uc=voirModele&action=liste'">
-        Voir les modèles
-    </button>
+    <div class="actions-footer">
+        <a class="btn btn-add" href="index.php?uc=creerAvion&action=formAdd">
+            Créer un nouvel avion
+        </a>
+
+        <button type="button" class="btn"
+            onclick="window.location.href='index.php?uc=voirModele&action=liste'">
+            Voir les modèles
+        </button>
+    </div>
+
+</div>
 
 </body>
 </html>

@@ -1,7 +1,4 @@
 <?php
-require_once dirname(__DIR__) . '/Models/m_modele.php';
-require_once dirname(__DIR__) . '/Models/m_avion.php';
-
 
 $modeleModele = new ModeleModel();
 

@@ -9,14 +9,17 @@
 </head>
 <body>
     <form action="index.php?uc=creerAvion&action=creerAvion" method="post">
+        
+        <div class="mouvement-header">
         <p><h2>Liste des Avions</h2></p>
+        </div>
 
-        <table border=3 cellspacing=1>
+        <table class="mouvement-table" border=3 cellspacing=1>
             <tr>
-                <td>Numéro de Série</td>
-                <td>Code Interne</td>
-                <td>Modèle</td>
-                <td colspan="2">Actions</td>
+                <th>Numéro de Série</th>
+                <th>Code Interne</th>
+                <th>Modèle</th>
+                <th colspan="2">Actions</th>
             </tr>
             <?php
 
@@ -50,6 +53,9 @@
             <input class="btn" type="submit" value="Créer un nouvel avion">
     </form>
         </br>
-    <button class="btn">Voir les modèles d'avions<a href="Views/v_modele.php"></a></button>
+   <button type="button" class="btn" onclick="window.location.href='index.php?uc=voirModele&action=liste'">
+        Voir les modèles
+    </button>
+
 </body>
 </html>

@@ -41,7 +41,7 @@ class ModeleModel
     public function modifierModele($id_Modele, $libelle_Modele, $nbSiegeMax_Modele) {
         $sql = 'UPDATE modele
                 SET libelle_Modele = :libelle_Modele,
-                    nbSiegeMax_Modele = :nbSiegeMax_Modele,
+                    nbSiegeMax_Modele = :nbSiegeMax_Modele
                 WHERE id_Modele = :id_Modele';
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([

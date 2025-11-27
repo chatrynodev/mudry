@@ -9,36 +9,36 @@
 </head>
 <body>
     <form action="index.php?uc=creerModele&action=creerModele" method="post">
-        <p><h2>Liste des Modele</h2></p>
+        <div class="mouvement-header">
+        <p><h2>Liste des Modèles</h2></p>
+        </div>
 
-        <table border=3 cellspacing=1>
+        <table class="mouvement-table" border=3 cellspacing=1>
             <tr>
-                <td>Nom du modèle</td>
-                <td>Nombre de sièges maximum</td>
-                <td colspan="2">Actions</td>
+                <th>Nom du modèle</th>
+                <th>Nombre de sièges maximum</th>
+                <th colspan="2">Actions</th>
             </tr>
             <?php
 
-                foreach ($lesAvions as $unAvion) 
+                foreach ($lesModeles as $unModele) 
                 {
-                    $num = $unAvion['numSerie_Avion'];
-                    $code = $unAvion['codeInterne_Avion'];
-                    $modele = $unAvion['id_Modele'];
+                    $nom = $unModele['libelle_Modele'];
+                    $nbSieges = $unModele['nbSiegeMax_Modele'];
             ?>
                 <tr>
-                        <td width=150><?php echo $num ?></td>
-                        <td width=150><?php echo $code ?></td>
-                        <td width=150><?php echo $modele ?></td>
+                        <td width=150><?php echo $nom ?></td>
+                        <td width=150><?php echo $nbSieges ?></td>
                     <?php
 
                     ?>
                         <td class="mouvement-actions">
                             <a class="btn btn-update"
-                                href="index.php?uc=modifierAvion&action=modifierAvion&id_Avion=<?php echo $unAvion['id_Avion'] ?>">Modifier</a></td>
+                                href="index.php?uc=modifierModele&action=modifierModele&id_Modele=<?php echo $unModele['id_Modele'] ?>">Modifier</a></td>
 
                         <td class="mouvement-actions">
                             <a class="btn btn-delete"
-                                href="index.php?uc=supprimerAvion&id_Avion=<?php echo $unAvion['id_Avion'] ?>">Supprimer</a></td>
+                                href="index.php?uc=supprimerModele&id_Modele=<?php echo $unModele['id_Modele'] ?>">Supprimer</a></td>
                 </tr>
                 <?php
             }
@@ -46,11 +46,12 @@
             </table>
             </br>
 
-            <input class="btn" type="submit" value="Créer un nouvel avion">
+            <input class="btn" type="submit" value="Créer un nouveau modèle">
+            
     </form>
         </br>
-    <form action="index.php?uc=voirModele&action=voirModele" method="post">
-        <input class="btn" type="submit" value="Voir les modèles d'avions">
-    </form>
+    <button type="button" class="btn" onclick="window.location.href='index.php?uc=voirAvion&action=liste'">
+        Voir les avions
+    </button>
 </body>
 </html>

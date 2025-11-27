@@ -9,28 +9,25 @@
 <header>
    <?php include("includes/navbar.php"); ?>      
 </header>
-<h1>Modifier l'Avion</h1>
+<h1>Modifier le modèle</h1>
 
-<form method="POST" action="index.php?uc=modifierAvion&action=confirmUpdate">
+<form method="POST" action="index.php?uc=modifierModele&action=confirmUpdate">
 
-    <input type="hidden" name="id_Avion" value="<?= htmlspecialchars($avion['id_Avion']) ?>">
+    <input type="hidden" name="id_Modele" value="<?= htmlspecialchars($modele['id_Modele']) ?>">
     <p>
-        <label>Numéro de Série :</label><br>
-        <input type="text" name="numSerie_Avion" value="<?= htmlspecialchars($avion['numSerie_Avion']) ?>">
+        <label>Nom du modèle :</label><br>
+        <input type="text" name="libelle_Modele" value="<?= htmlspecialchars($modele['libelle_Modele']) ?>">
     </p>
     
     <p>
-        <label>Code Interne :</label><br>
-        <input type="text" name="codeInterne_Avion" value="<?= htmlspecialchars($avion['codeInterne_Avion']) ?>">
+        <label>Nombre de sièges maximum :</label><br>
+        <input type="text" name="nbSiegeMax_Modele" value="<?= htmlspecialchars($modele['nbSiegeMax_Modele']) ?>">
     </p>
-
-    <label>Modèle :</label><br>
-        <input type="text" name="id_Modele" value="<?= htmlspecialchars($avion['id_Modele']) ?>">
     </p>
 
     <p>
         <button type="submit" class="btn btn-add">Enregistrer</button>
-        <button type="button" class="btn btn-add" onclick="window.location.href='index.php?uc=voirAvion&action=liste'">
+        <button type="button" class="btn btn-add" onclick="window.location.href='index.php?uc=voirModele&action=liste'">
             Annuler
         </button>
     </p>

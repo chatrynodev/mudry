@@ -8,28 +8,20 @@
    <?php include("includes/navbar.php"); ?>      
 </header>
 
-<h2>Créer un avion</h2>
+<h2>Créer un modèle</h2>
 
 <div class="mouvement-container">
 
-<form method="POST" action="index.php?uc=creerAvion&action=confirmAdd">
+<form method="POST" action="index.php?uc=creerModele&action=confirmAdd">
 
-    <label>Numéro de l'Avion :</label>
-    <input type="text" name="numSerie_Avion" required><br>
+    <label>Nom du modèle :</label>
+    <input type="text" name="libelle_Modele" required><br>
 
-    <label>Code Interne :</label>
-    <input type="text" name="codeInterne_Avion"><br>
+    <label>Nombre de sièges maximum :</label>
+    <input type="number" name="nbSiegeMax_Modele" required><br>
 
-    <!-- MENU DÉROULANT DES MODELES -->
-    <label>Modèle :</label>
-    <select name="id_Modele" required>
-        <option value="">-- Sélectionner un modèle --</option>
-        <?php foreach ($lesModeles as $modele): ?>
-            <option value="<?= $modele['id_Modele'] ?>">
-                <?= $modele['id_Modele'] ?> — <?= htmlspecialchars($modele['libelle_Modele']) ?>
-            </option>
-        <?php endforeach; ?>
-    </select><br>
+    <!--<label>Assigner des rôles :</label>
+    <input type="number" name="nbSiegeMax_Modele" required><br>-->
 
     <button type="submit" class="btn btn-add">Ajouter</button>
 

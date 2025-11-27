@@ -80,8 +80,10 @@ class ModeleModel
         // Insérer les nouvelles assignations avec quantités
         $sqlIns = 'INSERT INTO assigner (id_Modele, id_Role, nbMin_Role) VALUES (:id_Modele, :id_Role, :nbMin_Role)';
         $stmtIns = $this->pdo->prepare($sqlIns);
+
         foreach ($rolesAvecQte as $idRole => $quantite) {
             if (!is_numeric($idRole)) continue;
+
             $stmtIns->execute([
                 ':id_Modele' => $id_Modele,
                 ':id_Role' => intval($idRole),

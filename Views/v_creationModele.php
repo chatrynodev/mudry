@@ -20,8 +20,17 @@
     <label>Nombre de sièges maximum :</label>
     <input type="number" name="nbSiegeMax_Modele" required><br>
 
-    <!--<label>Assigner des rôles :</label>
-    <input type="number" name="nbSiegeMax_Modele" required><br>-->
+    <!-- MENU DÉROULANT DES ROLES -->
+    <label>Assigner des rôles :</label>
+    <?php if (!isset($lesRoles)) $lesRoles = []; ?>
+    <div class="roles-list">
+        <?php foreach ($lesRoles as $role): ?>
+            <label style="display:block; margin-bottom:4px;">
+                <input type="checkbox" name="id_Role[]" value="<?= htmlspecialchars($role['id_Role']) ?>">
+                <?= htmlspecialchars($role['libelle_Role']) ?>
+            </label>
+        <?php endforeach; ?>
+    </div><br>
 
     <button type="submit" class="btn btn-add">Ajouter</button>
 

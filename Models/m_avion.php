@@ -42,6 +42,17 @@ class AvionModel
         }
     }
 
+    public function getAvionsByModele($id_Modele)
+    {
+        if (empty($id_Modele) || !is_numeric($id_Modele)) {
+            return [];
+        }
+        $sql = "SELECT * FROM avion WHERE id_Modele = ? ORDER BY id_Avion ASC";
+        $req = $this->pdo->prepare($sql);
+        $req->execute([intval($id_Modele)]);
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function creerAvion($id_Avion, $numSerie_Avion, $codeInterne_Avion, $id_Modele) {
         $sql = 'INSERT INTO avion (id_Avion, numSerie_Avion, codeInterne_Avion, id_Modele)
                 VALUES (:id_Avion, :numSerie, :codeInterne, :id_Modele)';

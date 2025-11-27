@@ -19,6 +19,13 @@ class ModeleModel
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getAllRoles()
+    {
+        $sql = "SELECT id_Role, libelle_Role FROM role ORDER BY libelle_Role";
+        $req = $this->pdo->query($sql);
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getModeleById($id)
     {
         $sql = "SELECT * FROM Modele WHERE id_Modele = ?";
@@ -27,15 +34,61 @@ class ModeleModel
         return $req->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function creerModele($id_Modele, $libelle_Modele, $nbSiegeMax_Modele) {
-        $sql = 'INSERT INTO modele (id_Modele, libelle_Modele, nbSiegeMax_Modele)
-                VALUES (:id_Modele, :libelle, :nbSiegeMax)';
+    /**
+     * Retourne la liste des roles (libelle_Role) associés à un modèle via la table assigner.
+     * @param int $id_Modele
+     * @return array Liste d'éléments ['id_Role' => ..., 'libelle_Role' => ...]
+     */
+    public function getRoleForModele($id_Modele)
+    {
+        // Si id_Modele invalide -> renvoyer tableau vide
+        if (empty($id_Modele) || !is_numeric($id_Modele)) {
+            return [];
+        }
+
+        $sql = "SELECT r.id_Role, r.libelle_Role
+                FROM role r
+                INNER JOIN assigner a ON a.id_Role = r.id_Role
+                WHERE a.id_Modele = ?
+                ORDER BY r.libelle_Role";
+        $req = $this->pdo->prepare($sql);
+        $req->execute([$id_Modele]);
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function creerModele($libelle_Modele, $nbSiegeMax_Modele) {
+        $sql = 'INSERT INTO modele (libelle_Modele, nbSiegeMax_Modele)
+                VALUES (:libelle, :nbSiegeMax)';
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
-            ':id_Modele' => $id_Modele,
             ':libelle' => $libelle_Modele,
-            ':nbSiegeMax' => $nbSiegeMax_Modele,
+            ':nbSiegeMax' => $nbSiegeMax_Modele
         ]);
+        return $this->pdo->lastInsertId();
+    }
+
+    /**
+     * Assigne un ou plusieurs roles à un modèle.
+     * Remplace les assignations existantes pour éviter les doublons.
+     */
+    public function assignRolesToModele($id_Modele, array $roles) {
+        if (empty($id_Modele)) return;
+
+        // Supprimer les anciennes assignations
+        $sqlDel = 'DELETE FROM assigner WHERE id_Modele = :id_Modele';
+        $stmtDel = $this->pdo->prepare($sqlDel);
+        $stmtDel->execute([':id_Modele' => $id_Modele]);
+
+        // Insérer les nouvelles assignations
+        $sqlIns = 'INSERT INTO assigner (id_Modele, id_Role) VALUES (:id_Modele, :id_Role)';
+        $stmtIns = $this->pdo->prepare($sqlIns);
+        foreach ($roles as $idRole) {
+            if (!is_numeric($idRole)) continue;
+            $stmtIns->execute([
+                ':id_Modele' => $id_Modele,
+                ':id_Role' => intval($idRole)
+            ]);
+        }
     }
 
     public function modifierModele($id_Modele, $libelle_Modele, $nbSiegeMax_Modele) {

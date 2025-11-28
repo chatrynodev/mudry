@@ -41,7 +41,8 @@ nav {
 </style>
 
 <nav>
-    <img src="images/logo.png" alt="Logo de la compagnie aérienne" class="logoNav">
+    <!-- <img src="images/logo.png" alt="Logo de la compagnie aérienne" class="logoNav"> -->
+    <h2><a style="text-decoration: none; color: white;" href="index.php?uc=accueil">Mudry</a></h2>
     <ul class="listeNav">
         <li><a href="index.php?uc=voirAvion&action=liste">Nos<br>Avions</a></li>
         <li><a href="index.php?uc=voirMouvement&action=liste">Nos<br>Vols</a></li>

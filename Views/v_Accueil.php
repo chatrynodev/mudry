@@ -14,7 +14,7 @@
         <?php include("includes/navbar.php"); ?>
         
         <h1>MUDRY</h1>
-        <img src="/Models/images/avion fond accueil.png" class="header-img" alt="">
+        <img src="Models/images/avion fond accueil.png" class="header-img" alt="">
     </header>
 
     <!-- PRESENTATION -->

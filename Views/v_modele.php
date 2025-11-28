@@ -8,6 +8,9 @@
 
 </head>
 <body>
+    <header>
+        <?php include("includes/navbar.php"); ?>      
+    </header>
     <form action="index.php?uc=creerModele&action=creerModele" method="post">
         <div class="mouvement-header">
         <p><h2>Liste des Modèles</h2></p>

@@ -18,7 +18,7 @@
 <form method="POST" action="index.php?uc=creerAvion&action=confirmAdd">
 
     <label>Numéro de l'Avion :</label>
-    <input type="text" name="numSerie_Avion" required><br>
+    <input type="number" name="numSerie_Avion" required><br>
 
     <label>Code Interne :</label>
     <input type="text" name="codeInterne_Avion"><br>

@@ -4,15 +4,17 @@ class MouvementModel {
 
     private $pdo;
 
-    public function __construct(PDO $pdo){
-        $this->pdo = $pdo;
+    public function __construct()
+    {
+        // ✔ On récupère l’instance — puis la connexion PDO
+        $this->pdo = PdoMudry::getPdoMudry()->getConnexion();
     }
 
     private function cleanString($v){
         return htmlspecialchars(trim($v),ENT_QUOTES,'UTF-8');
     }
 
-    public function getAll(){
+    public function getAllMouvements(){
         try{
             $sql="SELECT * FROM mouvement ORDER BY date_Depart DESC";
             $stmt=$this->pdo->prepare($sql);
@@ -21,33 +23,35 @@ class MouvementModel {
         }catch(Exception $e){ return ["error"=>"Erreur interne."]; }
     }
 
-    public function insert($numVol,$dist,$nbPass,$dateDep,$dateArr,$duree){
-        try{
-            $numVol = $this->cleanString($numVol);
-            $dist = (float)$dist;
-            $nbPass = (int)$nbPass;
-            $dateDep = $this->cleanString($dateDep);
-            $dateArr = $this->cleanString($dateArr);
-            $duree = $this->cleanString($duree);
-
-            $sql="INSERT INTO mouvement 
-            (num_Vol,distance_Mouv,nb_PassagerMouv,date_Depart,date_Arrive,duree)
-            VALUES (?,?,?,?,?,?)";
-
-            $stmt=$this->pdo->prepare($sql);
-            return $stmt->execute([$numVol,$dist,$nbPass,$dateDep,$dateArr,$duree]);
-
-        }catch(Exception $e){ return ["error"=>"Erreur interne."]; }
+    public function getUnMouvement($num_Mouv)
+    {
+        $sql = "SELECT * FROM mouvement WHERE num_Mouv = ?";
+        $req = $this->pdo->prepare($sql);
+        $req->execute([$num_Mouv]);
+        return $req->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function delete($id){
-        try{
-            $id=(int)$id;
+    public function ajouterMouvement($num_Vol, $distance, $nbPassager, $dateDep, $dateArr, $duree, $idAvion, $idArrivee, $idDepart)
+    {
+        $sql = "INSERT INTO mouvement (num_Vol, distance_Mouv, nb_PassagerMouv, date_Depart, date_Arrive, duree, id_Avion, id_Aeroport_Arrivee, id_Aeroport_Depart)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $req = $this->pdo->prepare($sql);
+        $req->execute([$num_Vol, $distance, $nbPassager, $dateDep, $dateArr, $duree, $idAvion, $idArrivee, $idDepart]);
+    }
 
-            $sql="DELETE FROM mouvement WHERE num_Mouv=?";
-            $stmt=$this->pdo->prepare($sql);
-            return $stmt->execute([$id]);
+    public function modifierMouvement($num_Mouv, $num_Vol, $distance, $nbPassager, $dateDep, $dateArr, $duree, $idAvion, $idArrivee, $idDepart)
+    {
+        $sql = "UPDATE mouvement 
+                SET num_Vol=?, distance_Mouv=?, nb_PassagerMouv=?, date_Depart=?, date_Arrive=?, duree=?, id_Avion=?, id_Aeroport_Arrivee=?, id_Aeroport_Depart=?
+                WHERE num_Mouv=?";
+        $req = $this->pdo->prepare($sql);
+        $req->execute([$num_Vol, $distance, $nbPassager, $dateDep, $dateArr, $duree, $idAvion, $idArrivee, $idDepart, $num_Mouv]);
+    }
 
-        }catch(Exception $e){ return ["error"=>"Erreur interne."]; }
+    public function supprimerMouvement($num_Mouv)
+    {
+        $sql = "DELETE FROM mouvement WHERE num_Mouv=?";
+        $req = $this->pdo->prepare($sql);
+        $req->execute([$num_Mouv]);
     }
 }

@@ -1,3 +1,17 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Gestion employés</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="Models/css/gestion.css">
+
+</head>
+<body>
+
+<header>
+   <?php include("includes/navbar.php"); ?>      
+</header>
 <div id="ajoutEmployer">
 <form method="POST" action="index.php?uc=gererEmployer&action=confirmerEmployer">
    <fieldset>

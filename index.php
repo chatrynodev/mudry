@@ -65,6 +65,8 @@ switch($uc)
     }
     case 'deconnexion': {
         include("deconnexion.php");
+        break;
+    }
     case 'voirModele': {
         include("Controllers/c_voirModele.php");
         break;
@@ -112,14 +114,6 @@ switch($uc)
     case 'deleteMouvement' : {
         include("Controllers/c_deleteMouvement.php");
         break;
-    }
-	case 'voirEmployer' : {
-        include("Controllers/c_voirEmployer.php");
-        break;
-    }
-	case 'gererEmployer' : { 
-        include("Controllers/c_gestionEmployer.php");
-        break; 
     }
     case 'gererEquipage' : { 
         include("Controllers/c_gestionEquipage.php");

@@ -4,7 +4,7 @@ $action  = $_REQUEST['action']   ?? 'voirEquipage';
 $numMouv = $_REQUEST['num_Mouv'] ?? null;
 
 // Instanciation des modèles
-$modeleEmploye   = new EmployerModel();
+$modeleEmploye   = new ModelEmployer();
 $modeleRole      = new RoleModel();
 $modeleEquipage  = new EquipageModel();
 $modeleAvion     = new AvionModel();

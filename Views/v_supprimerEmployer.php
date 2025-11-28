@@ -7,7 +7,7 @@
 </head>
 <body>
 <header>
-   <?php //include("includes/navbar.php"); ?>      
+   <?php include("includes/navbar.php"); ?>      
 </header>
 
 <h1>Supprimer un employé</h1>

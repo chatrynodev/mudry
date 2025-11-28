@@ -4,8 +4,10 @@ class AssignerModel {
 
     private $pdo;
 
-    public function __construct(PDO $pdo){
-        $this->pdo = $pdo;
+    public function __construct()
+    {
+        // ✔ On récupère l’instance — puis la connexion PDO
+        $this->pdo = PdoMudry::getPdoMudry()->getConnexion();
     }
 
     public function getByModele($idModele){

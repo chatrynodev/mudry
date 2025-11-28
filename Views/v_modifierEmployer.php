@@ -8,7 +8,7 @@
 
 <body>
 <header>
-   <?php //include("includes/navbar.php"); ?>  
+   <?php include("includes/navbar.php"); ?>      
 </header>
 
 <h2>Modifier un employé : </h2>

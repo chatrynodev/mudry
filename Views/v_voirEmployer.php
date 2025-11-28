@@ -9,7 +9,7 @@
 
 <body>
 <header>
-   <?php //include("includes/navbar.php"); ?>      
+   <?php include("includes/navbar.php"); ?>      
 </header>
 <h2>Liste des employés</h2>
 

@@ -4,8 +4,10 @@ class AeroportModel {
 
     private $pdo;
 
-    public function __construct(PDO $pdo) {
-        $this->pdo = $pdo;
+    public function __construct()
+    {
+        // ✔ On récupère l’instance — puis la connexion PDO
+        $this->pdo = PdoMudry::getPdoMudry()->getConnexion();
     }
 
     /* ------------------------------
@@ -23,6 +25,7 @@ class AeroportModel {
             $sql = "SELECT * FROM aeroport ORDER BY nom_Aeroport ASC";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         } catch (Exception $e) {
             return ["error" => "Erreur interne."];
